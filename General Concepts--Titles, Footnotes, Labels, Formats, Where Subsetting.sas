@@ -142,3 +142,194 @@ proc freq data=sasdata.projects;
   table pol_type;
   format pol_type $polluteB.;
 run;
+
+/***You can limit the data processed with WHERE statements**/
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region eq 'Beaumont' or region eq 'Boston';
+  /**Only processes records for which the condition is true**/
+run;
+
+/**Some items of note...**/
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region eq 'beaumont' or region eq 'boston';
+  /**Character values are case-sensitive (matching, sorting, and some other stuff)**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region eq 'Beaumont' or eq 'Boston';
+  /**Compound conditions must contain a complete condition on
+    each side of AND/OR**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region eq 'Beaumont' or 'Boston';
+  /**evaluation of variables or values on their own is  
+      based on 0/null being false, all other values true**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where pol_code eq 1 or 3;
+  /** **/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region eq 'Beaumont' or pol_type eq 'CO';
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region in ('Beaumont','Boston');
+    /**IN allows for a space or comma separated list to be given in parentheses,
+        If any value is matched, the condition is true (it's an OR set)**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region not in ('Beaumont','Boston');
+    /**NOT is a negation of the condition**/
+run;
+
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where jobtotal le 80000 and jobtotal ge 50000;
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where jobtotal between 50000 and 80000;
+/**Between A and B is available for simplifying ranges**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region between 'A' and 'M';
+/**Between A and B does work for character, it uses
+    alphabetical ordering with case-sensitivity**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where pol_type contains 'O';
+    /**contains 'string' looks for that string anywhere in the variable value
+      and returns true if it is present at least once**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region not contains 'B';
+    /**contains 'string' looks for that string anywhere in the variable value
+      and returns true if it is present at least once**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region like 'B%';
+    /**You can use LIKE with two types of wildcards:
+          %--any number of characters, including 0
+          _--is exactly one character**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region like '%B%';
+    /****/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region like '%B_';
+    /****/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects mean median std;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region like '%o%o%';
+    /****/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region not in ('Beaumont','Boston') 
+          and pol_type contains 'O';
+    /**compounding can be applied to special conditions**/
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects(where=(region not in ('Beaumont','Boston'))) 
+            min q1 median q3 max;
+    /**WHERE (as WHERE=) is a data set option**/
+  var equipmnt personel jobtotal;
+  class pol_type region;
+run;
+
+Title 'Five Number Summary';
+Title2 'On Equipment, Personnel, and Total Cost';
+proc means data=sasdata.projects min q1 median q3 max;
+  var equipmnt personel jobtotal;
+  class pol_type region;
+  where region not in ('Beaumont','Boston') 
+          and pol_type contains 'O';
+  ods output summary=work.means(where=(nobs ge 60));
+run;
