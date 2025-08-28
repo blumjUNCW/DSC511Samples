@@ -1,0 +1,4828 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta name="Generator" content="SAS Software Version 9.4, see www.sas.com">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>SAS Output</title>
+<style type="text/css">
+<!--
+.accessiblecaption
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.activelink
+{
+  color: #800080;
+}
+.aftercaption
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+  padding-top: 4pt;
+}
+.batch
+{
+  background-color: #FAFBFE;
+  border: 1px solid #C1C1C1;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: 'SAS Monospace', 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  padding: 7px;
+}
+.beforecaption
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.body
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.bodydate
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  text-align: right;
+  vertical-align: top;
+  width: 100%;
+}
+.bycontentfolder
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.byline
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.bylinecontainer
+{
+  background-color: #FAFBFE;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.caption
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.cell
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.container
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.contentfolder
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.contentitem
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.contentproclabel
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.contentprocname
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.contents
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: decimal;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.contentsdate
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.contenttitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: bold;
+}
+.continued
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+  width: 100%;
+}
+.data
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.dataemphasis
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.dataemphasisfixed
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.dataempty
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.datafixed
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.datastrong
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.datastrongfixed
+{
+  background-color: #FFFFFF;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.date
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.document
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+a:link {
+color:#0000FF
+}
+a:visited {
+color:#800080
+}
+a:active {
+color:#800080
+}
+.errorbanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.errorcontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.errorcontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.extendedpage
+{
+  background-color: #FAFBFE;
+  border: 1pt solid #000000;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+  text-align: center;
+}
+.fatalbanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.fatalcontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.fatalcontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.folderaction
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.footer
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.footeremphasis
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.footeremphasisfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.footerempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.footerfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.footerstrong
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.footerstrongfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.frame
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.graph
+{
+  background-color: #FAFBFE;
+  border: 1px solid #C1C1C1;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.header
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headeremphasis
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.headeremphasisfixed
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.headerempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headerfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.headersandfooters
+{
+  background-color: #EDF2F9;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headerstrong
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.headerstrongfixed
+{
+  background-color: #D8DBD3;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #000000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.heading1
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading2
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading3
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading4
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading5
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.heading6
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.index
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.indexaction
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.indexitem
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.indexprocname
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.indextitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: bold;
+}
+.layoutcontainer
+{
+  border: 0px solid #000000;
+  border-spacing: 30px;
+}
+.layoutregion
+{
+  border: 0px solid #000000;
+  border-spacing: 30px;
+}
+.linecontent
+{
+  background-color: #FAFBFE;
+  border-bottom-width: 1px;
+  border-color: #C1C1C1;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.link
+{
+  color: #0000FF;
+}
+.list
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: disc;
+}
+.list10
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list2
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: circle;
+}
+.list3
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list4
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list5
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list6
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list7
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list8
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.list9
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: disc;
+}
+.listitem10
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem2
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: circle;
+}
+.listitem3
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem4
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem5
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem6
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem7
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem8
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.listitem9
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: square;
+}
+.note
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.notebanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.notecontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.notecontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.output
+{
+  background-color: #FAFBFE;
+  border: 1px solid #C1C1C1;
+  border-collapse: separate;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.pageno
+{
+  background-color: #FAFBFE;
+  border-spacing: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+  text-align: right;
+  vertical-align: top;
+}
+.pages
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: decimal;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.pagesdate
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.pagesitem
+{
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  list-style-type: none;
+  margin-left: 6pt;
+}
+.pagesproclabel
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.pagesprocname
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.pagestitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: bold;
+}
+.paragraph
+{
+  background-color: #FAFBFE;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.parskip
+{
+  border: 0px solid #000000;
+  border-spacing: 0px;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.prepage
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  text-align: left;
+}
+.proctitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.proctitlefixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooter
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooteremphasis
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowfooteremphasisfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowfooterempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooterfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.rowfooterstrong
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowfooterstrongfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheader
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheaderemphasis
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowheaderemphasisfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: italic;
+  font-weight: normal;
+}
+.rowheaderempty
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheaderfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.rowheaderstrong
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.rowheaderstrongfixed
+{
+  background-color: #EDF2F9;
+  border-bottom-width: 1px;
+  border-color: #B0B7BB;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-style: solid;
+  border-top-width: 0px;
+  color: #112277;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemfooter
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter10
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter2
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter3
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter4
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter5
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter6
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter7
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter8
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemfooter9
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.systemtitle
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle10
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle2
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle3
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle4
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle5
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle6
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle7
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle8
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systemtitle9
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: small;
+  font-style: normal;
+  font-weight: bold;
+}
+.systitleandfootercontainer
+{
+  background-color: #FAFBFE;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.table
+{
+  border-bottom-width: 0px;
+  border-collapse: collapse;
+  border-color: #C1C1C1;
+  border-left-width: 1px;
+  border-right-width: 0px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-top-width: 1px;
+}
+.top_stacked_value
+{
+  padding-bottom: 1px;
+  border: 0;
+}
+.middle_stacked_value
+{
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border: 0;
+}
+.bottom_stacked_value
+{
+  padding-top: 1px;
+  border: 0;
+}
+.titleandnotecontainer
+{
+  background-color: #FAFBFE;
+  border: 0px solid #000000;
+  border-spacing: 1px;
+  color: #000000;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+  width: 100%;
+}
+.titlesandfooters
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.usertext
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.visitedlink
+{
+  color: #800080;
+}
+.warnbanner
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: bold;
+}
+.warncontent
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: Arial, 'Albany AMT', Helvetica, Helv;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.warncontentfixed
+{
+  background-color: #FAFBFE;
+  color: #112277;
+  font-family: 'Courier New', Courier;
+  font-size: x-small;
+  font-style: normal;
+  font-weight: normal;
+}
+.l {text-align: left }
+.c {text-align: center }
+.r {text-align: right }
+.d {text-align: right }
+.j {text-align: justify }
+.t {vertical-align: top }
+.m {vertical-align: middle }
+.b {vertical-align: bottom }
+TD, TH {vertical-align: top }
+.stacked_cell{padding: 0 }
+-->
+</style>
+<script language="javascript" type="text/javascript">
+<!-- 
+function startup(){
+
+}
+function shutdown(){
+
+}
+
+//-->
+</script>
+
+</head>
+<body onload="startup()" onunload="shutdown()" class="body">
+
+<script language="javascript" type="text/javascript">
+<!-- 
+var _info = navigator.userAgent
+var _ie = (_info.indexOf("MSIE") > 0
+          && _info.indexOf("Win") > 0
+          && _info.indexOf("Windows 3.1") < 0);
+var _ie64 = _info.indexOf("x64") > 0
+
+//-->
+</script>
+
+<div class="branch">
+<a name="IDX"></a>
+<div>
+<div class="l paragraph">Create the following</div>
+</div>
+<br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br/></p><hr size="3"/>
+<a name="IDX1"></a>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemtitle">Exercise 1</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Means: Summary statistics">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="l b header" scope="col">Variable</th>
+<th class="r b header" scope="col">N</th>
+<th class="r b header" scope="col">Lower Quartile</th>
+<th class="r b header" scope="col">Median</th>
+<th class="r b header" scope="col">Upper Quartile</th>
+<th class="r b header" scope="col">Mean</th>
+<th class="r b header" scope="col">Std Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">324</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">324</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0120450</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0187155</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0140935</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0122515</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0359255</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0434940</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0120760</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0103984</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0402376</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0509135</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemfooter">Using Index Data</td>
+</tr>
+</table><br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br/></p><hr size="3"/>
+<a name="IDX2"></a>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemtitle">Exercise 2</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Means: Summary statistics">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="r b header" scope="col">dt</th>
+<th class="l b header" scope="col">Variable</th>
+<th class="r b header" scope="col">N</th>
+<th class="r b header" scope="col">Lower Quartile</th>
+<th class="r b header" scope="col">Median</th>
+<th class="r b header" scope="col">Upper Quartile</th>
+<th class="r b header" scope="col">Mean</th>
+<th class="r b header" scope="col">Std Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="r t data">January</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0140470</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0242820</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0175980</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0204260</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0450300</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0587280</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0203208</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0159013</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0391148</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0530405</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">February</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0158170</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0182000</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0173920</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0063620</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0331420</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0419200</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0101619</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0045430</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0351084</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0526474</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">March</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0137150</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0209440</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0135450</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0185010</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0294700</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0358130</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0106936</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0032786</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0407134</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0469547</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">April</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0119750</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0150980</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0113480</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0015610</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0420000</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0435080</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0173289</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0105630</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0358490</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0436889</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">May</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0049900</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0241760</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0124850</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0150900</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0420900</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0483680</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0197874</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0157362</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0312771</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0404684</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">June</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0221750</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0215720</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0114780</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0125010</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0220500</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0452360</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0043297</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0119344</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0274317</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0398171</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">July</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0159920</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0317780</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.000309000</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0091220</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0348080</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0448000</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0055194</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0033500</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0369876</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0477424</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">August</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0305900</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0128900</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0150510</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0163320</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0287300</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0409900</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0089529</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0053667</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0578831</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0601004</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">September</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0349460</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0352890</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0070650</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0074500</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0167310</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0274680</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0054839</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0085070</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0407201</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0522744</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">October</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0085960</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.000681000</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0165700</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0194810</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0510000</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0561720</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0134827</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0177683</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0557173</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0645572</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">November</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0078270</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0066100</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0287540</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0388680</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0522400</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0673620</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0220499</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0264583</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0401851</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0572347</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">December</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">27</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">27</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0048250</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0121730</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0224540</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0120020</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0334880</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0353590</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0177694</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0183877</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0289592</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0471432</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemfooter">Using Index Data</td>
+</tr>
+</table><br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br/></p><hr size="3"/>
+<a name="IDX3"></a>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemtitle">Exercise 3</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table  summary="Page Layout"><tr>
+<td class="c t"><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+</colgroup>
+<tbody>
+<tr>
+<th class="l t stacked_cell header" scope="col"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l t header top_stacked_value" scope="col">Frequency</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Percent</th>
+</tr>
+<tr>
+<th class="l t header bottom_stacked_value" scope="col">Row Pct</th>
+</tr>
+</table></th>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="c header" colspan="5" scope="colgroup">Table&nbsp;of&nbsp;pool&nbsp;by&nbsp;quality</th>
+</tr>
+<tr>
+<th class="c b header" rowspan="2" scope="col">pool(Swimming Pool,<br/>1=Yes)</th>
+<th class="c b header" colspan="4" scope="colgroup">quality(Quality, 1=high, 2=medium, 3=low)</th>
+</tr>
+<tr>
+<th class="r header" scope="col">      1</th>
+<th class="r header" scope="col">      2</th>
+<th class="r header" scope="col">      3</th>
+<th class="r header" scope="col">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="r t rowheader" scope="row">   0        </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">59</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">11.30</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">12.14</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">268</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">51.34</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">55.14</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">159</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">30.46</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.72</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">486</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">93.10</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   1        </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">9</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.72</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">22</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.21</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">61.11</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">5</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">0.96</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">13.89</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">36</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.90</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="l t rowheader" scope="row">Total       </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">68</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">13.03</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">290</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">55.56</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">164</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">31.42</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">522</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">100.00</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</tr>
+</table>
+</div>
+</div>
+<br>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemfooter">Using RealEstate Data</td>
+</tr>
+</table><br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br/></p><hr size="3"/>
+<a name="IDX4"></a>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemtitle">Exercise 4</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table  summary="Page Layout"><tr>
+<td class="c t"><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+</colgroup>
+<tbody>
+<tr>
+<th class="l t stacked_cell header" scope="col"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l t header top_stacked_value" scope="col">Frequency</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Percent</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Row Pct</th>
+</tr>
+<tr>
+<th class="l t header bottom_stacked_value" scope="col">Col Pct</th>
+</tr>
+</table></th>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="c header" colspan="8" scope="colgroup">Table&nbsp;of&nbsp;DATE&nbsp;by&nbsp;REGION</th>
+</tr>
+<tr>
+<th class="c b header" rowspan="2" scope="col">DATE(Quarter)</th>
+<th class="c b header" colspan="7" scope="colgroup">REGION</th>
+</tr>
+<tr>
+<th class="r header" scope="col">Beaumont</th>
+<th class="r header" scope="col">Boston</th>
+<th class="r header" scope="col">Cheyenne</th>
+<th class="r header" scope="col">Portland</th>
+<th class="r header" scope="col">Raleigh</th>
+<th class="r header" scope="col">Rockford</th>
+<th class="r header" scope="col">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="r t rowheader" scope="row">   1 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">30</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.56</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.33</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">18.99</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">91</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.73</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">25.28</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">18.24</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">45</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.34</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">12.50</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">19.23</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">72</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.74</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.00</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">17.43</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">50</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.60</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">13.89</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.28</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">72</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.74</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.00</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">18.65</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">360</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">18.70</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   2 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">46</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.39</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">7.68</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">29.11</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">155</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.05</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">25.88</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">31.06</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">73</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.79</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">12.19</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">31.20</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">132</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.86</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">22.04</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">31.96</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">68</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.53</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">11.35</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.94</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">125</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.49</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.87</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.38</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">599</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">31.12</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   3 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">47</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.44</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.25</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">29.75</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">154</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.00</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">27.02</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">30.86</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">66</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.43</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">11.58</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.21</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">116</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.03</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.35</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.09</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">68</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.53</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">11.93</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.94</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">119</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.88</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">30.83</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">570</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">29.61</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   4 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">35</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.82</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.84</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">22.15</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">99</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.14</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">25.00</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">19.84</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">50</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.60</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">12.63</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.37</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">93</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.83</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">23.48</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">22.52</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">49</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.55</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">12.37</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">20.85</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">70</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.64</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">17.68</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">18.13</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">396</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.57</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="l t rowheader" scope="row">Total</th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">158</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">8.21</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">499</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.92</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">234</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">12.16</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">413</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.45</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">235</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">12.21</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">386</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">20.05</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">1925</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">100.00</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</tr>
+</table>
+</div>
+</div>
+<br>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemfooter">Using Projects Data</td>
+</tr>
+</table><br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br/></p><hr size="3"/>
+<a name="IDX5"></a>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemtitle">Exercise 5</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table  summary="Page Layout"><tr>
+<td class="c t"><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+</colgroup>
+<tbody>
+<tr>
+<th class="l t stacked_cell header" scope="col"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l t header top_stacked_value" scope="col">Frequency</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Percent</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Row Pct</th>
+</tr>
+<tr>
+<th class="l t header bottom_stacked_value" scope="col">Col Pct</th>
+</tr>
+</table></th>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="c header" colspan="8" scope="colgroup">Table&nbsp;1&nbsp;of&nbsp;DATE&nbsp;by&nbsp;REGION</th>
+</tr>
+<tr>
+<th class="c header" colspan="8" scope="colgroup">Controlling&nbsp;for&nbsp;POL_TYPE=LEAD</th>
+</tr>
+<tr>
+<th class="c b header" rowspan="2" scope="col">DATE(Quarter)</th>
+<th class="c b header" colspan="7" scope="colgroup">REGION</th>
+</tr>
+<tr>
+<th class="r header" scope="col">Beaumont</th>
+<th class="r header" scope="col">Boston</th>
+<th class="r header" scope="col">Cheyenne</th>
+<th class="r header" scope="col">Portland</th>
+<th class="r header" scope="col">Raleigh</th>
+<th class="r header" scope="col">Rockford</th>
+<th class="r header" scope="col">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="r t rowheader" scope="row">   1 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">2</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">0.73</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.08</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">10.53</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">8</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.91</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">16.33</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">14.29</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">6</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">12.24</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.43</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">22</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.00</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">44.90</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.78</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">6</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">12.24</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">24.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">5</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.82</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.20</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">10.87</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">49</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">17.82</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   2 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">8</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.91</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.26</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">42.11</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">14</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.09</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">17.95</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">9</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.27</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">11.54</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.14</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">28</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">35.90</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">27.72</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">4</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.45</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.13</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">16.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">15</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.45</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">19.23</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.61</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">78</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">28.36</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   3 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">3</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.09</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.70</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">15.79</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.55</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">22.22</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.14</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">7</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.55</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.64</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">29</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.55</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">35.80</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.71</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">8</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.91</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">9.88</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">16</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.82</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">19.75</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">34.78</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">81</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">29.45</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   4 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">6</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.96</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">31.58</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">16</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.82</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">23.88</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.57</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">6</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.96</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.43</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">22</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.00</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">32.84</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.78</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">7</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.55</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.45</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">28.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">10</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.64</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">14.93</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.74</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">67</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">24.36</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="l t rowheader" scope="row">Total</th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">19</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">6.91</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">56</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">20.36</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">28</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">10.18</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">101</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">36.73</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">25</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">9.09</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">46</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">16.73</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">275</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">100.00</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</tr>
+</table>
+</div>
+</div>
+<br>
+<a name="IDX6"></a>
+<div>
+<div align="center">
+<table  summary="Page Layout"><tr>
+<td class="c t"><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+</colgroup>
+<tbody>
+<tr>
+<th class="l t stacked_cell header" scope="col"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l t header top_stacked_value" scope="col">Frequency</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Percent</th>
+</tr>
+<tr>
+<th class="l t header middle_stacked_value" scope="col">Row Pct</th>
+</tr>
+<tr>
+<th class="l t header bottom_stacked_value" scope="col">Col Pct</th>
+</tr>
+</table></th>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+<td><div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Freq: Cross-Tabular Freq Table">
+<colgroup>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="c header" colspan="8" scope="colgroup">Table&nbsp;2&nbsp;of&nbsp;DATE&nbsp;by&nbsp;REGION</th>
+</tr>
+<tr>
+<th class="c header" colspan="8" scope="colgroup">Controlling&nbsp;for&nbsp;POL_TYPE=TSP</th>
+</tr>
+<tr>
+<th class="c b header" rowspan="2" scope="col">DATE(Quarter)</th>
+<th class="c b header" colspan="7" scope="colgroup">REGION</th>
+</tr>
+<tr>
+<th class="r header" scope="col">Beaumont</th>
+<th class="r header" scope="col">Boston</th>
+<th class="r header" scope="col">Cheyenne</th>
+<th class="r header" scope="col">Portland</th>
+<th class="r header" scope="col">Raleigh</th>
+<th class="r header" scope="col">Rockford</th>
+<th class="r header" scope="col">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="r t rowheader" scope="row">   1 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">4</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">0.70</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.54</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">9.52</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">30</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.24</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">26.55</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.13</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">13</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.27</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">11.50</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">21.31</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">26</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.54</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">23.01</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">18.06</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">19</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.32</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">16.81</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">26.76</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">21</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.66</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">18.58</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">18.58</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">113</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">19.72</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   2 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">13</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.27</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">7.69</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">30.95</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">50</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.73</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">29.59</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">35.21</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">15</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.62</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.88</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">24.59</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">36</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.28</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">21.30</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.00</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.14</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.65</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.35</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">37</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.46</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">21.89</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">32.74</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">169</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">29.49</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   3 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">17</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.97</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">9.44</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">40.48</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">37</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.46</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">20.56</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">26.06</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">24</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.19</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">13.33</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">39.34</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">49</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.55</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">27.22</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">34.03</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">18</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.14</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">10.00</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.35</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">35</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">6.11</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">19.44</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">30.97</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">180</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">31.41</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t rowheader" scope="row">   4 </th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">8</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.40</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">7.21</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">19.05</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">25</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">4.36</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">22.52</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">17.61</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">9</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">1.57</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">8.11</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">14.75</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">33</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">5.76</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">29.73</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">22.92</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">16</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">2.79</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">14.41</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">22.54</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">20</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">3.49</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">18.02</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">17.70</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">111</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">19.37</td>
+</tr>
+<tr>
+<td class="r t data middle_stacked_value">&nbsp;</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">&nbsp;</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="l t rowheader" scope="row">Total</th>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">42</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">7.33</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">142</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">24.78</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">61</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">10.65</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">144</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">25.13</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">71</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">12.39</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">113</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">19.72</td>
+</tr>
+</table></td>
+<td class="r t stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r t data top_stacked_value">573</td>
+</tr>
+<tr>
+<td class="r t data bottom_stacked_value">100.00</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</tr>
+</table>
+</div>
+</div>
+<br>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemfooter">Using Projects Data</td>
+</tr>
+</table><br>
+</div>
+<div class="branch">
+<p style="page-break-after: always;"><br/></p><hr size="3"/>
+<a name="IDX7"></a>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemtitle">Exercise 6</td>
+</tr>
+</table><br>
+<div>
+<div align="center">
+<table class="table" cellspacing="0" cellpadding="5" rules="all" frame="box" bordercolor="#C1C1C1" summary="Procedure Means: Summary statistics">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="r b header" scope="col">dt</th>
+<th class="l b header" scope="col">Variable</th>
+<th class="r b header" scope="col">N</th>
+<th class="r b header" scope="col">Lower Quartile</th>
+<th class="r b header" scope="col">Median</th>
+<th class="r b header" scope="col">Upper Quartile</th>
+<th class="r b header" scope="col">Mean</th>
+<th class="r b header" scope="col">Std Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th class="r t data">2000</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0348720</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0489660</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0098450</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0442955</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0373430</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0602275</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0069313</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0183916</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0531359</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0738859</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">2001</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0315760</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0908075</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0053625</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0189415</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0230115</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0607790</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0041212</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0150713</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0379067</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0898134</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">2002</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0504300</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0753365</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0030440</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0328380</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0274280</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0187825</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0123704</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0251358</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0582872</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0613306</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">2003</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0040405</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0029310</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0142330</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0217440</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0614135</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0422400</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0227489</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0223031</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0374717</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0285245</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">2004</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.000721000</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0082740</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0160625</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0110095</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0225280</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0195250</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0129968</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0054139</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0206083</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0258681</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">2005</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value" nowrap>-0.0157320</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0155600</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0085410</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0034120</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0265065</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0268960</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0059043</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0046355</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0213390</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0278899</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<th class="r t data">2006</th>
+<th class="l stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th class="l data top_stacked_value">r1000value</th>
+</tr>
+<tr>
+<th class="l data bottom_stacked_value">r1000growth</th>
+</tr>
+</table></th>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">12</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">12</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0099675</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value" nowrap>-0.0027520</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0211890</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0090690</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0248650</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0236635</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0170018</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0074625</td>
+</tr>
+</table></td>
+<td class="r stacked_cell data"><table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td class="r data top_stacked_value">0.0163762</td>
+</tr>
+<tr>
+<td class="r data bottom_stacked_value">0.0208045</td>
+</tr>
+</table></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<br>
+<table class="systitleandfootercontainer" width="100%" cellspacing="1" cellpadding="1" rules="none" frame="void" border="0" summary="Page Layout">
+<tr>
+<td class="c systemfooter">Using Index Data</td>
+</tr>
+</table><br>
+</div>
+</body>
+</html>
