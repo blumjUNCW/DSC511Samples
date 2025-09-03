@@ -51,3 +51,37 @@ proc import datafile="~/Courses/PG1V2/data/np_traffic.csv"
   getnames=yes;
   guessingrows=max;
 run; 
+
+/**Practice 3**/
+proc import datafile="~/Courses/PG1V2/data/np_traffic.dat"
+            dbms=dlm out=np_traffic2 replace;
+            /**DBMS=DLM says it is a delimited file...**/
+  getnames=yes;
+  guessingrows=max;
+  delimiter='|';/**the DELIMITER statement allows you to choose the delimiter(s)**/
+run; 
+
+proc import datafile="~/Courses/PG1V2/data/np_traffic.csv"
+            dbms=dlm out=np_traffic replace;
+  getnames=yes;
+  guessingrows=max;
+  delimiter=',';
+run; 
+
+
+proc import datafile="~/Courses/PG1V2/data/storm_damage.tab"
+            dbms=dlm out=storm_damage_tab replace;
+  getnames=yes;
+  guessingrows=max;
+  delimiter='09'x; /**09 is the ASCII hex code for a tab--can give hex codes as '##'x**/
+run; 
+
+PROC IMPORT DATAFILE='~/Courses/PG1V2/data/storm_damage.csv' 
+  DBMS=dlm
+  OUT=WORK.StormDamage 
+  replace
+  ;
+  GETNAMES=YES;
+  guessingrows=max;
+  delimiter=',';
+RUN;
