@@ -120,8 +120,156 @@ data work.cars;
               1. Switches the default delimiter to a comma (but you can still change it as we did)
               2. Treats consecutive delimeters as containing a missing value
               3. Ignores delmiters in values embedded in quotes**/
-  input Make:$50. Model:$50. Type:$15. Origin:$6. Drivetrain:$6. MSRP:dollar. Invoice:dollar. EngineSize Cylinders
-        Horsepower CityMPG HighwayMPG Weight:comma. Wheelbase Length;
+  input Make:$50. Model:$50. Type:$15. Origin:$6. Drivetrain:$6. MSRP:dollar. Invoice:dollar. 
+          EngineSize Cylinders Horsepower CityMPG HighwayMPG Weight:comma. Wheelbase Length;
   label CityMPG = 'MPG City' HighwayMPG='MPG Highway';
   format MSRP Invoice dollar12. weight comma8.;
 run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+                              /** ^^ need this**/ /**DSD and MISSOVER not required but no harm in having**/  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode:$1.;
+    /**State and Region must be read as character, JobID and PollutionCode can
+        be read as either, Equipment and Personnel I want as numeric
+          and I want Date as numeric (SAS date) as well**/
+
+  format date weekdate. Equipment Personnel dollar12.;
+    
+run;
+
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode:$1.;
+
+  JobTotal = Equipment + Personnel;/**Variable = expression; assigns the value of the expression to the variable
+                                        it determines type and length as part of that**/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12.;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode:$1.;
+
+  JobTotal = Equipment + Personnel;
+  Month = month(date);/**Month() extracts the month from a date as a whole number 1-12**/
+
+  Description = catx('--',Region,put(date,mmddyy10.),put(Jobtotal,dollar12.));
+      /**catx(delimiter,expression1,expression2,...) --concatenate expressions with the delimiter between
+          put(variable,format) -> converts numeric to character using the specified format**/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+libname SASData '~/SASData';
+proc sort data=sasdata.projects nodupkey out=pollutants(keep=pol_code pol_type);
+  by pol_code pol_type;
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+  /**IF-THEN-ELSE conditional logic is available**/
+  if PollutionCode eq 1 then Pollutant='TSP'; /**First encounter of Pollutant during compilation
+                                                is a 3 character literal--that's its length**/
+    else if PollutionCode eq 2 then Pollutant='LEAD';
+      else if PollutionCode eq 3 then Pollutant='CO';
+        else if PollutionCode eq 4 then Pollutant='SO2';
+          else Pollutant='O3';
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  length Pollutant $4; /**Can use a length statement before any other encounter for Pollutant**/
+  if PollutionCode eq 1 then Pollutant='TSP'; 
+    else if PollutionCode eq 2 then Pollutant='LEAD';
+      else if PollutionCode eq 3 then Pollutant='CO';
+        else if PollutionCode eq 4 then Pollutant='SO2';
+          else Pollutant='O3';
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  if PollutionCode eq 1 then Pollutant='TSP '; 
+    else if PollutionCode eq 2 then Pollutant='LEAD';
+      else if PollutionCode eq 3 then Pollutant='CO';
+        else if PollutionCode eq 4 then Pollutant='SO2';
+          else Pollutant='O3';
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  if PollutionCode eq 2 then Pollutant='LEAD';
+    else if PollutionCode eq 1 then Pollutant='TSP'; 
+      else if PollutionCode eq 3 then Pollutant='CO';
+        else if PollutionCode eq 4 then Pollutant='SO2';
+          else Pollutant='O3';
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  if PollutionCode eq 2 then Pollutant='LEAD';
+  if PollutionCode eq 1 then Pollutant='TSP'; 
+  if PollutionCode eq 3 then Pollutant='CO';
+  if PollutionCode eq 4 then Pollutant='SO2';
+  if PollutionCode eq 5 then Pollutant='O3';
+    /***Don't really need the ELSE branching...
+      the process is more efficient with ELSE
+      ***/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  if PollutionCode eq 2 then Pollutant='LEAD';
+  if PollutionCode eq 1 then Pollutant='TSP'; 
+  if PollutionCode eq 3 then Pollutant='CO';
+  if PollutionCode eq 4 then Pollutant='SO2';
+   else Pollutant='O3';
+    /***Don't do partial branching***/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
