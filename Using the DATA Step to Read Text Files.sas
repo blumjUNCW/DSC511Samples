@@ -198,7 +198,7 @@ data projects;
     else if PollutionCode eq 2 then Pollutant='LEAD';
       else if PollutionCode eq 3 then Pollutant='CO';
         else if PollutionCode eq 4 then Pollutant='SO2';
-          else Pollutant='O3';
+          *else Pollutant='O3';
 
   format date weekdate. Equipment Personnel JobTotal dollar12. ;
     
@@ -273,3 +273,97 @@ data projects;
     
 run;
 
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  length Pollutant $4; 
+  select(PollutionCode); /**SELECT(expression) -> check equality of expression against conditions in WHEN clauses
+                            if no expression (and no parentheses) are given, each WHEN must contain a complete condition**/
+    when(1) Pollutant='TSP';
+    when(2) Pollutant='LEAD';
+    when(3) Pollutant='CO';
+    when(4) Pollutant='SO2';
+    otherwise Pollutant='O3';
+  end;/**SELECT is a block, uses an END to terminate**/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  length Pollutant $4; 
+  select(PollutionCode); 
+    when(1) Pollutant='TSP';
+    when(2) Pollutant='LEAD';
+    when(3) Pollutant='CO';
+    when(4) Pollutant='SO2';
+    when(5) Pollutant='O3';
+  end;/***OTHERWISE is not always required...**/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  length Pollutant $4; 
+  select(PollutionCode); 
+    when(1) Pollutant='TSP';
+    when(2) Pollutant='LEAD';
+    when(3) Pollutant='CO';
+    when(4) Pollutant='SO2';
+  end;/**If the WHEN conditions do not cover all possibilities, the OTHERWISE
+        is required**/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  length Pollutant $4; 
+  select(PollutionCode); 
+    when(1) Pollutant='TSP';
+    when(2) Pollutant='LEAD';
+    when(3) Pollutant='CO';
+    when(4) Pollutant='SO2';
+    when(5) Pollutant='O3';
+    otherwise Pollutant='????';
+  end;/***Can always take extra care with this...**/
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
+
+data projects;
+  infile '~/SASData/projects.txt' dlm='09'x dsd missover;  
+  input State:$2. JobID:$5. Date:mmddyy. Region:$10. Equipment Personnel PollutionCode;
+
+  JobTotal = Equipment + Personnel;
+
+  select(PollutionCode); 
+    when(1,3,4,5) Pollutant='Not Lead';
+    when(2) Pollutant='Lead';
+    otherwise Pollutant='????';
+  end;
+
+  format date weekdate. Equipment Personnel JobTotal dollar12. ;
+    
+run;
