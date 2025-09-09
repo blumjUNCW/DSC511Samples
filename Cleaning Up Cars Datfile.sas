@@ -84,4 +84,7 @@ data work.cars;
   label CityMPG = 'MPG City' HighwayMPG='MPG Highway';
   format MSRP Invoice dollar12. weight comma8.;
 run;
-
+proc freq data=cars;
+  table make type origin drivetrain;
+  /**need some clean up on make and type, others look ok**/
+run;
