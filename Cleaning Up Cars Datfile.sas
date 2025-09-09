@@ -73,9 +73,9 @@ data work.cars;
           EngineSize Cylinders Horsepower CityMPG HighwayMPG Weight:comma. Wheelbase Length;
 
   if origin ne 'USA' then do;
-      Weight = round(Weight*2.2,100);
-      Wheelbase = round(Wheelbase/2.54,.1);
-      Length = round(Length/2.54,.01);
+      Weight = round(Weight*2.2,1);
+      Wheelbase = round(Wheelbase/2.54,1);
+      Length = round(Length/2.54,1);
   end;
 
   if scan(lowcase(make),1) eq 'mercedes' then Merc=1;
