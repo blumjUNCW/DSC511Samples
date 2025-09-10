@@ -9,7 +9,13 @@ data work.cars;
       Length = round(Length/2.54,1);
   end;
 
-  make = propcase(make);/**assign the updated value of Make back into Make**/
+  if lowcase(make) in ('bmw' 'gmc' 'mini') then make=upcase(make);
+    else make = propcase(make);/**BMW, GMC, and MINI are supposed to be all uppercase**/
+  
+  /**Sometimes the abbreviation for door, dr, is spelled uppercase in model and sometimes
+      lowercase, we want lowercase...***/
+  model = tranwrd(model,'4DR ','4dr '); 
+  model = tranwrd(model,'2DR ','2dr '); 
 
   if scan(lowcase(make),1) eq 'mercedes' then make = 'Mercedes-Benz';
   
@@ -30,7 +36,13 @@ proc sort data=work.cars out=CarsCompare nodupkey dupout=dups;
   by make model drivetrain;
 run;
 
-proc sort data=sashelp.cars out=CarsBase nodupkey dupout=dups2;
+data CarsModified;
+  set sashelp.cars; /**can read a SAS table (or other structured tables in a library) using SET**/
+
+  model = left(model);    
+run;
+
+proc sort data=CarsModified out=CarsBase nodupkey dupout=dups2;
   by make model drivetrain;
 run;
 
@@ -41,3 +53,10 @@ run;
 proc contents data=CarsBase;
   ods select variables;
 run;
+
+proc compare base=CarsBase
+             compare=CarsCompare(rename=(CityMPG=MPG_City HighwayMPG=MPG_Highway))
+             out=differences outall outnoequal;
+run;
+
+
