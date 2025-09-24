@@ -1,5 +1,4 @@
 libname SASData '~/SASData';
-
 /***SAS language contains global statements
     --standalone statements like LIBNAME 
       these take effect as soon as they successfully compile (and execute)**/

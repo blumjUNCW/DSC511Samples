@@ -2,7 +2,9 @@ libname SASData '~/SASData';
 
 /***Frequencies and percents are done with PROC FREQ***/
 proc freq data=sasdata.projects;
-run;/**categorizes every variable and gives frequency and percent--may not be a good idea for some...**/
+run;
+/**categorizes every variable and gives frequency and percent
+  --may not be a good idea for some...**/
 
 proc freq data=sasdata.projects;
   table pol_type region;/**table chooses variables...**/
