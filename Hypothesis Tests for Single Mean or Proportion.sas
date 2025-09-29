@@ -47,6 +47,17 @@ proc freq data=sashelp.heart;
   *ods select onewayfreqs binomialTest;
 run;
 
+/**get the upper bound for proportion w/95% 
+    confidence...***/
+proc freq data=sashelp.heart;
+  format BP_status $hbp.;
+  where weight_status eq 'Normal';
+  table BP_status / binomial(h0=0.3) alpha=0.10;
+    /**90% confidence in both directions = 95% confidence 
+          in only one (upper or lower)**/
+  *ods select onewayfreqs binomialTest;
+run;
+
 proc freq data=sashelp.heart;
   table BP_status / binomial(h0=0.45);
   format BP_status $hbp.;
