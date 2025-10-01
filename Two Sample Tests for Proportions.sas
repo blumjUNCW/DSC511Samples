@@ -101,6 +101,12 @@ proc freq data=sashelp.heart order=formatted;
 run;
 
 /*4*/
-proc freq data=SASData.Environment;
-  table HigherTaxes*CutLivingStandards;
+proc sort data=sasdata.environment out=sorted;
+  by descending HigherTaxes descending CutLivingStandards;
+run;
+
+ods graphics off;
+proc freq data=sorted order=data;
+  table HigherTaxes*CutLivingStandards / agree;
+  weight count;
 run;
