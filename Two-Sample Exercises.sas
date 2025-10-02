@@ -81,12 +81,16 @@ run;
 
 proc sql;
   create table all2 as  
-  select grads.*, cohort.men as incomingMen, cohort.women as incomingWomen
+  select grads.*, cohort.men as incomingMen, cohort.women as incomingWomen,
+      grads.women/incomingWomen-grads.men/incomingMen as rateDiff
   from grads full join cohort
       on grads.unitID eq cohort.unitID
   ;
 quit;
-
+ods graphics off;
+proc ttest data=all2;
+  var rateDiff;
+run;
   
 
 
