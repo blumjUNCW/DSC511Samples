@@ -187,7 +187,6 @@ proc format;
     ;
 run;
 
-
 ods graphics off;
 proc freq data=gradRates;
   table RateWomen*RateMen / agree;
