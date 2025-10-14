@@ -171,21 +171,83 @@ data profitSummary;
   format TotalProfit dollar15.;
 run;
 
+proc freq data=pg2.np_acres order=freq;
+  table ParkName;
+run;
+
+proc sort data=pg2.np_acres out=parkSort;
+  by ParkName;
+run;
+
+data singleState multiState;
+  set parkSort;
+  by ParkName;
+
+  if first.ParkName and last.ParkName then output singleState;
+    /***      ^^^^^^^^^^^ only one record for a park**/
+    else output multiState;
+  
+  keep Region ParkName State GrossAcres;
+run;
+
 
 /**redo the one below to get the same set of 
     max variables for all parks, of any type**/
-data cuy_maxTraffic;
-  set pg2.np_monthlytraffic;
-  where scan(ParkName,1) eq 'Cuyahoga';
-
-  retain TrafficMax 0 MonthMax LocationMax;
-
-  if count gt TrafficMax then do;/**if the new one is the largest...**/
-    TrafficMax = count;
-    MonthMax = month;
-    LocationMax = location;
-  end;
-  
-  format count TrafficMax comma12.;
-  keep Location Month Count TrafficMax MonthMax LocationMax;
+proc sort data=pg2.np_monthlytraffic out=trafficSort;
+  by ParkName descending count;
 run;
+
+
+data maxTraffic;
+  set trafficSort;
+  by ParkName;
+  
+  if first.ParkName then output;  
+  
+  rename count=TrafficMax month=monthMax location=locationMax;
+run;
+
+/**get the three highest counts for each park--
+    so, three records per park**/
+data TopThree;
+  set trafficSort;
+  by ParkName;
+
+  if first.ParkName then c=0;/**set a counter for each park**/
+  c+1;/**increment it..**/
+
+  if c le 3 then output;
+
+run;
+
+
+proc sort data=pg2.np_acres out=parkSort;
+  by ParkName;
+run;
+
+/**This time, make one data set that is one row per park
+    for multi-state parks, the acrage should be the total
+    across all states and the state variable should list
+    all states that the park spans**/
+data Parks;
+  set parkSort;
+  by ParkName;
+  retain states;
+  length states $16;
+
+  if first.ParkName and last.ParkName then do;
+      states=state;
+      output;
+  end;/**one record for a park...***/
+    
+  else if first.ParkName then states=state;/**if not, then start with this**/
+    else if last.ParkName then do;
+      states=catx(', ',states,state); /**add current state to the list of states**/
+      output;/**output when last**/
+    end;
+      else states=catx(', ',states,state);/**add current state to the list of states, don't output yet**/
+  
+  keep Region ParkName States GrossAcres;
+run;
+
+
