@@ -121,8 +121,132 @@ run;
 /**make the projected earliest first storm three weeks prior to the 
     current first storm in a basin,
     projected latest three weeks after the last storm**/
+data projections;
+  set StormSort;
+  by basin;
+  retain ProjFirst;
+  
+  if first.basin then ProjFirst = intnx('week',intnx('year',StartDate,1,'same'),-3,'same');
+  if last.basin then do;
+      projLast = intnx('week',intnx('year',StartDate,1,'same'),3,'same');
+      output;
+  end;
+
+  format proj: weekdate.;
+  keep basin proj:;
+run;
+
+
+proc print data=pg2.np_lodging(obs=10);
+  where CL2010>0;
+run;
+
+data stays;
+  set pg2.np_lodging;
+
+  stayAvg = round(mean(of CL:),1);
+
+  if stayAvg gt 0;
+
+  stay1 = largest(1,of CL:);
+  stay2 = largest(2,of CL:);
+  stay3 = largest(3,of CL:);
+
+  format Stay: comma11.;
+  keep Park Stay:;
+run;
+
+
+data staysB;
+  set pg2.np_lodging;
+
+  array stay(3);/**creates stay1 stay2 stay3 as data
+                  set variables but you can reference
+                  with an index: stay(k)**/
+  do i = 1 to 3;
+    stay(i) = largest(i,of CL:);
+  end;
+
+  format Stay: comma11.;
+  keep Park Stay:;
+run;
+
+
+data rainsummary;
+  set pg2.np_hourlyrain;
+  by Month;
+
+  if first.Month=1 then MonthlyRainTotal=0;
+  MonthlyRainTotal+Rain;
+  if last.Month;
+  date = datepart(datetime);
+  MonthEnd = intnx('month',date,0,'end');
+
+  format date MonthEnd mmddyy10.;
+  keep StationName MonthlyRainTotal Date MonthEnd;
+run;
+
+proc freq data=pg2.weather_japan;
+  table Location Station;
+run;
+
+
+data weather_japan_clean;
+    set pg2.weather_japan;
+    NewLocation = compbl(Location);
+    NewStation = compress(Station);
+      /**default compression is all spaces...**/
+    NewStationB = compress(Station,'-');
+      /**you can choose characters to compress...***/
+    NewStationC = compress(Station,' -');
+      /**it's treated as a list of individual characters if
+          more that one is supplied**/
+run;
 
 
 
+data weather_japan_clean;
+  set pg2.weather_japan;
+  Location = compbl(Location);
+  CityA = scan(Location, 1, ',');
+  CityB = propcase(CityA, ' '); 
+  CityC = propcase(CityA);
+  Prefecture=scan(Location, 2, ',');
+  *putlog Prefecture $quote20.;
+  if Prefecture=" Tokyo";
+run;
 
+data weather_japan_clean;
+  set pg2.weather_japan;
+  Location = compbl(Location);
+  CityA = scan(Location, 1, ',');
+  CityB = propcase(CityA, ' '); 
+  CityC = propcase(CityA);
+  Prefecture=scan(Location, 2);
+    /**space is in the default delimiter set,
+        but so is dash - **/
+  *putlog Prefecture $quote20.;
+  *if Prefecture="Tokyo";
+run;
 
+data weather_japan_clean;
+  set pg2.weather_japan;
+  Location = compbl(Location);
+  CityA = scan(Location, 1, ',');
+  CityB = propcase(CityA, ' '); 
+  CityC = propcase(CityA);
+  Prefecture=scan(Location, 2, ' ,');
+  *putlog Prefecture $quote20.;
+  if Prefecture="Tokyo";
+run;
+
+data weather_japan_clean;
+  set pg2.weather_japan;
+  Location = compbl(Location);
+  CityA = scan(Location, 1, ',');
+  CityB = propcase(CityA, ' '); 
+  CityC = propcase(CityA);
+  Prefecture=left(scan(Location, 2, ','));
+  *putlog Prefecture $quote20.;
+  if Prefecture="Tokyo";
+run;
