@@ -250,3 +250,76 @@ data weather_japan_clean;
   *putlog Prefecture $quote20.;
   if Prefecture="Tokyo";
 run;
+
+
+data storm_damage2;
+  set pg2.storm_damage;
+
+  CategoryLoc=find(Summary, 'category');
+  CategoryLocW=findw(Summary, 'category', ' ','ei');
+    /**FINDW works like find without modifiers--
+      the E modifier can give you word position instead
+        of character position, but requires a delimiter
+        choice (here I'm using space)**/
+
+  CategoryLocB=index(Summary, 'category');
+  CategoryLocB2=index(lowcase(Summary), 'category');
+
+
+  CategoryLocC=find(Summary, 'category','i'); 
+    /**i modifier in FIND--case insensitive search**/
+
+  CategoryLocD=find(Summary, 'category','i',50); 
+    /**number as third or fourth arg is the starting position**/
+
+  CategoryLocE=find(Summary, 'category','i',-10); 
+    /**negative start means start there and go right-to-left**/
+
+
+  *if CategoryLoc > 0 then Category=substr(Summary,CategoryLoc, 10);
+
+  drop Date Cost;
+run;
+
+data storm_id;
+  set pg2.storm_final;
+
+  Day=StartDate-intnx('year', StartDate, 0);
+      /**Day of the year the storm started**/
+  StormID1=cat(Name, Season, Day);
+  StormID2=cats(Name, Season, Day);
+  StormID3=catx('; ', Name, Season, Day);
+  StormID4=catx('--', Name, Season, Day);
+  StormID5=catx(' ', Day, catx('--', Name, Season));
+
+  keep StormID: Day StartDate;
+run;
+
+
+data clean_traffic;
+  set pg2.np_monthlytraffic;
+
+  length Type $5;
+  Type = scan(ParkName,-1,' ');
+    /**Update the park name to not have this final code on it**/
+  Region = upcase(compress(Region));
+  Location = propcase(location);
+
+  drop Year;
+run;
+
+data parks;
+  set pg2.np_monthlytraffic;
+  where find(ParkName, 'NP');
+
+  test1 = substr(Parkname,4);
+  test2 = substr(Parkname,4,3);
+
+  locateNP = find(ParkName,'NP');
+
+  ParkNameReduced = substr(ParkName,1,find(ParkName,'NP')-1);
+  ParkNameRedB = tranwrd(ParkName,'NP','');
+
+  keep parkName: locateNP;
+
+run;
