@@ -319,7 +319,111 @@ data parks;
 
   ParkNameReduced = substr(ParkName,1,find(ParkName,'NP')-1);
   ParkNameRedB = tranwrd(ParkName,'NP','');
+    /***tranwrd(expression,search-string,replacement-string)**/
 
-  keep parkName: locateNP;
+  Gate = tranwrd(Propcase(location),'Traffic Count At','');
+  GateB = tranwrd(Propcase(location),'Traffic Count At ','');
+                                                    /*** ^^ this is still a space**/
+  GateC = transtrn(Propcase(location),'Traffic Count At ','');
+                                                    /*** ^^ literal interpretation is a space**/       
+  GateD = transtrn(Propcase(location),'Traffic Count At ',trimn(''));
+                                                       /*** ^^ this is a null character **/   
+  if find(Propcase(location),'Traffic Count At') eq 1 then GateE = substr(propcase(location),18);  
+      else gateE = Propcase(location);  
 
+  location = propcase(compbl(location));
+
+  GateCode = catx('-',ParkCode,Gate);
+
+  keep parkName: locateNP gate: location;
+
+run;
+
+
+proc contents data=pg2.stocks2;
+run;
+
+data work.stocks2;
+   set pg2.stocks2;
+    length vol h 8;
+    vol=volume;/**this has commas, does not convert by default...***/
+    h=high;/**All legal characters for a numeric value, converts correctly**/
+    Range=High-Low;/**So, this works...**/
+    DailyVol=Volume/30;/**this does not**/
+run;
+
+data work.stocks2;
+   set pg2.stocks2;
+    Range=input(High,best12.)-Low;/**bestW. is a generic numeric informat**/
+    DailyVol=input(Volume,comma14.)/30;/**make sure you use a sufficient width on your informat**/
+    DateValue = input(Date,date9.);
+    WordDate = strip(put(DateValue,weekdate.));
+      /**put(source,format) converts to character using the format given**/
+
+    format DateValue mmddyy10.;
+run;
+
+libname SASData '~/SASData';
+
+proc format;
+  value $pollutant
+    'CO'='Carbon Monoxide'
+    'LEAD'='Lead'
+    'SO2'='Sulfur-Dioxide'
+    'O3'='Ozone'
+    'TSP'='Total Suspended Particulates'
+    ;
+   value $COorNot
+    'CO'='Carbon Monoxide'
+    other = 'Not Carbon Monoxide'
+    ;
+run;
+
+data projects;
+  set sasdata.projects;
+
+  Pollutant = put(pol_type,$pollutant.);
+  CO = put(pol_type,$COorNot.);
+  /**character-to-character conversion with PUT is
+      usually only done with custom formats**/
+run;
+
+data work.stocks2;
+   set pg2.stocks2;
+    Range=input(High,best12.)-Low;
+    Volume=input(Volume,comma14.);
+      /**this will not work the way you expect...
+        input changes to a number, but since you put it
+        into Volume, a character variable, it converts back**/
+    DateValue = input(Date,date9.);
+    WordDate = strip(put(DateValue,weekdate.));
+
+    format DateValue mmddyy10.;
+run;
+
+data work.stocks2;
+   set pg2.stocks2(rename=(volume=VolChar));  
+      /**If I want to use volume as numeric, remove
+        it from the input variable set by renaming***/
+    Range=input(High,best12.)-Low;
+    Volume=input(VolChar,comma14.);
+      /**Now the name Volume is free for me to use however I want**/
+    DateValue = input(Date,date9.);
+    WordDate = strip(put(DateValue,weekdate.));
+
+    format DateValue mmddyy10. volume comma15.;
+    drop volChar;
+run;
+
+data stocks2;
+   set pg2.stocks2(rename=(Volume=CharVolume 
+                            Date=CharDate
+                            High=CharHigh));
+   Volume=input(CharVolume,comma12.);
+   Date = input(CharDate,date9.);
+   High = input(CharHigh,best12.);
+
+   format date mmddyy10. volume comma15.;
+   
+   drop Char:;
 run;
