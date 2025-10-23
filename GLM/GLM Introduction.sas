@@ -127,7 +127,7 @@ proc glm data=sashelp.heart;
   model systolic = weight_status / solution;
     /**solution shows the estimated model even when
       only categorical stuff is used**/
-  ods select ParameterEstimates;
+  *ods select ParameterEstimates;
 run;
 
 proc glm data=sashelp.heart;
@@ -138,3 +138,120 @@ proc glm data=sashelp.heart;
   ods select ParameterEstimates;
 run;
 
+/**Concept Question 5.2, #2**/
+proc glm data=sashelp.heart;
+  class weight_status(ref='Overweight'); 
+  *class weight_status / ref=first;
+  model systolic = weight_status / solution;
+  ods select ParameterEstimates;
+run; 
+
+proc glm data=sashelp.heart;
+  class chol_status;
+  model systolic = chol_status weight / noint solution;
+  ods select ParameterEstimates;
+run;
+
+proc standard data=sashelp.heart out=heartCentered mean=0;
+  var weight height;
+run;
+proc glm data=heartCentered;
+  class chol_status;
+  model systolic = chol_status weight / noint solution;
+  ods select ParameterEstimates;
+run;
+/* proc means data=sashelp.heart; */
+/*   class chol_status; */
+/*   var systolic; */
+/* run; */
+
+
+/* proc glm data=sashelp.heart; */
+/*   class chol_status; */
+/*   model systolic = chol_status weight / solution; */
+/*   ods select ParameterEstimates; */
+/* run; */
+proc glm data=heartCentered;
+  class chol_status;
+  model systolic = chol_status weight / solution;
+  ods select ParameterEstimates;
+run;
+
+
+proc glm data=sashelp.heart;
+  class chol_status;
+  model systolic = chol_status|weight / solution;
+    /**A|B is A B A*B
+       A|B|C that's A B A*B C A*C B*C A*B*C  can extend
+       A|B|C @2 to get A B A*B C A*C B*C **/
+  ods select ParameterEstimates;
+run;
+
+proc glm data=sashelp.heart;
+  class chol_status;
+  model systolic = chol_status chol_status*weight / solution noint;
+  ods select ParameterEstimates;
+run;
+
+/**Exercises**/
+libname SASData '~/SASData';
+
+/*1A*/
+proc glm data=SASData.cdi;
+  model inc_per_cap = ba_bs;
+  ods select ParameterEstimates;
+run;
+
+data cdiMod;
+  set SASData.cdi;
+  ba_bs = ba_bs-10;
+  pop18_34 = pop18_34 - 20;
+run;
+/* proc glm data=cdiMod; */
+/*   model inc_per_cap = ba_bs; */
+/*   ods select ParameterEstimates; */
+/* run; */
+
+/*1B*/
+proc glm data=SASData.cdi;
+  model inc_per_cap = pop18_34;
+  ods select ParameterEstimates;
+run;
+/*1C*/
+proc glm data=SASData.cdi;
+  model inc_per_cap = ba_bs pop18_34;
+  ods select ParameterEstimates;
+run;
+
+proc reg data=SASData.cdi;
+  model ba_bs = pop18_34;
+  ods select ParameterEstimates;
+run;
+
+/*1D*/
+proc glm data=SASData.cdi;
+  model inc_per_cap = ba_bs|pop18_34;
+  ods select ParameterEstimates;
+run;
+
+
+
+
+
+
+
+
+
+
+
+
+%macro myGLM(data=,response=,predictors=);
+proc glm data=&data;
+  model &response = &predictors;
+  ods select ParameterEstimates;
+run;
+%mend;
+%myGLM(data=SASData.cdi,response=inc_per_cap,predictors=ba_bs);
+%myGLM(data=SASData.cdi,response=inc_per_cap,predictors=pop18_34);
+%myGLM(data=SASData.cdi,response=inc_per_cap,predictors=ba_bs pop18_34);
+%myGLM(data=SASData.cdi,response=inc_per_cap,predictors=ba_bs|pop18_34);
