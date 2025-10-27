@@ -138,7 +138,7 @@ proc glm data=sashelp.heart;
   ods select ParameterEstimates;
 run;
 
-/**Concept Question 5.2, #2**/
+/**Concept Question 5.2, CX2**/
 proc glm data=sashelp.heart;
   class weight_status(ref='Overweight'); 
   *class weight_status / ref=first;
@@ -201,12 +201,12 @@ proc glm data=SASData.cdi;
   model inc_per_cap = ba_bs;
   ods select ParameterEstimates;
 run;
-
-data cdiMod;
-  set SASData.cdi;
-  ba_bs = ba_bs-10;
-  pop18_34 = pop18_34 - 20;
-run;
+/*  */
+/* data cdiMod; */
+/*   set SASData.cdi; */
+/*   ba_bs = ba_bs-10; */
+/*   pop18_34 = pop18_34 - 20; */
+/* run; */
 /* proc glm data=cdiMod; */
 /*   model inc_per_cap = ba_bs; */
 /*   ods select ParameterEstimates; */
@@ -223,11 +223,6 @@ proc glm data=SASData.cdi;
   ods select ParameterEstimates;
 run;
 
-proc reg data=SASData.cdi;
-  model ba_bs = pop18_34;
-  ods select ParameterEstimates;
-run;
-
 /*1D*/
 proc glm data=SASData.cdi;
   model inc_per_cap = ba_bs|pop18_34;
@@ -235,6 +230,8 @@ proc glm data=SASData.cdi;
 run;
 
 proc stdize data=sasdata.cdi out=cdiStd method=mean;  
+  /**proc stdize does various standardizations--
+    it uses methods...mean moves mean value to 0 (centers)**/
   var ba_bs pop18_34;
 run;
 proc glm data=cdiStd;
@@ -243,22 +240,113 @@ proc glm data=cdiStd;
 run;
 
 
-
-
-
-
-
-
-
-
-
 %macro myGLM(data=,response=,predictors=);
 proc glm data=&data;
   model &response = &predictors;
   ods select ParameterEstimates;
 run;
 %mend;
+
+options mprint;
 %myGLM(data=SASData.cdi,response=inc_per_cap,predictors=ba_bs);
 %myGLM(data=SASData.cdi,response=inc_per_cap,predictors=pop18_34);
 %myGLM(data=SASData.cdi,response=inc_per_cap,predictors=ba_bs pop18_34);
 %myGLM(data=SASData.cdi,response=inc_per_cap,predictors=ba_bs|pop18_34);
+
+
+/*3A*/
+proc glm data=SASData.realEstate;
+  model price  = sq_ft;
+  ods select ParameterEstimates;
+run;
+/*3B*/
+proc glm data=SASData.realEstate;
+  model price = bedrooms;
+  ods select ParameterEstimates;
+run;
+/*3C*/
+proc glm data=SASData.realEstate;
+  model price = sq_ft bedrooms;
+  ods select ParameterEstimates;
+run;
+/*3D*/
+proc glm data=SASData.realEstate;
+  model price = sq_ft|bedrooms;
+  ods select ParameterEstimates;
+run;
+
+data realEstate;
+  set sasdata.realEstate;
+  sqFt = sq_ft-1500;
+  beds = bedrooms-3;
+run;
+
+proc glm data=realEstate;
+  model price = sqft|beds;
+  ods select ParameterEstimates;
+run;
+
+proc sgplot data=sasdata.realestate;
+  where price le 600000;
+  scatter x=sq_ft y=bedrooms / markerattrs=(symbol=squarefilled)
+                              colorresponse=price
+                              colormodel=(CXca0020 CXf4a582 CXf7f7f7
+                                          CX92c5de CX0571b0);
+run;
+
+/*2A*/
+proc format;
+  value region
+   1='Northeast'
+   2='North-Central'
+   3='South'
+   4='West'
+  ;
+run;
+
+proc glm data=SASData.cdi;
+  class region(ref='South');
+  model inc_per_cap = region / solution;
+  lsmeans region;
+  ods select ParameterEstimates lsmeans;
+  format region region.;
+run;
+
+/*2B*/
+proc glm data=SASData.cdi;
+  class region;
+  model inc_per_cap = ba_bs|region / solution;
+  ods select ParameterEstimates;
+  format region region.;
+run;
+
+proc glm data=cdiSTD;
+  class region;
+  model inc_per_cap = ba_bs|region / solution;
+  ods select ParameterEstimates;
+  format region region.;
+run;
+
+proc glm data=SASData.cdi;
+  class region;
+  model inc_per_cap = ba_bs|region ;
+  lsmeans region;
+  /**this plugs in the mean for any quantitative predictors
+      when estimating means for categories**/
+  ods select ParameterEstimates lsmeans;
+  format region region.;
+run;
+
+ods graphics off;
+proc glm data=SASData.cdi;
+  class region;
+  model inc_per_cap = ba_bs|region / solution;
+  lsmeans region / diff cl;
+  lsmeans region / at ba_bs = 10;
+  estimate 'NC vs S' ba_bs*region 1 0 -1 0;
+  ods select ParameterEstimates lsmeans estimates;
+  format region region.;
+run;
+
+
+
