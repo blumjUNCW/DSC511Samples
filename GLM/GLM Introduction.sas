@@ -234,6 +234,13 @@ proc glm data=SASData.cdi;
   ods select ParameterEstimates;
 run;
 
+proc stdize data=sasdata.cdi out=cdiStd method=mean;  
+  var ba_bs pop18_34;
+run;
+proc glm data=cdiStd;
+  model inc_per_cap = ba_bs|pop18_34;
+  ods select ParameterEstimates;
+run;
 
 
 
