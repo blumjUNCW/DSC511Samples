@@ -348,5 +348,78 @@ proc glm data=SASData.cdi;
   format region region.;
 run;
 
+/*4a*/
+proc format;
+  value qual
+    1='1-High'
+    2='2-Medium'
+    3='3-Low'
+    ;
+run;
+proc glm data=sasdata.realestate;
+  class quality;
+  model price = quality / solution;
+  ods select parameterEstimates;
+  format quality qual.;
+run;
+proc glm data=sasdata.realestate;
+  *class quality;
+  model price = quality / solution;
+  ods select parameterEstimates;
+  *format quality qual.;
+run;
+
+/*4b*/
+data RealEstate;
+  set sasdata.realestate;
+  
+  sqFt=sq_ft-2000;
+run;
+
+
+proc glm data=realestate;
+  class quality;
+  model price = quality|sqFt / solution;
+  ods select parameterEstimates;
+  format quality qual.;
+run;
+
+
+/**Take the model from 2b and add in population 18 to 34 and 
+    all possible cross products between predictors--interpret**/
+proc stdize data=sasdata.cdi out=cdiStd method=mean;  
+  var ba_bs pop18_34;
+run;
+proc format;
+  value region
+   1='Northeast'
+   2='North-Central'
+   3='South'
+   4='West'
+  ;
+run;
+proc glm data=cdiSTD;
+  class region;
+  model inc_per_cap = ba_bs|region|pop18_34 / solution;
+  ods select ModelAnova ParameterEstimates;
+  format region region.;
+run;
+
+/**Practice 1A**/
+data cdi;
+  set sasdata.cdi;
+
+  crimeRate = crimes/pop*100000;
+  popDensity = pop/land;
+run;
+
+proc stdize data=cdi out=StdCDI method=mean;
+  var  popDensity poverty ba_bs;
+run;
+
+proc glm data=stdcdi;
+  model crimeRate = popDensity poverty ba_bs;
+  ods select parameterEstimates;
+run;
 
 
