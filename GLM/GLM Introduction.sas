@@ -344,6 +344,8 @@ proc glm data=SASData.cdi;
   lsmeans region / diff cl;
   lsmeans region / at ba_bs = 10;
   estimate 'NC vs S' ba_bs*region 1 0 -1 0;
+  /**North-Central - South on the BA X Region effect
+      difference in those slopes**/
   ods select ParameterEstimates lsmeans estimates;
   format region region.;
 run;
@@ -414,7 +416,7 @@ data cdi;
 run;
 
 proc stdize data=cdi out=StdCDI method=mean;
-  var  popDensity poverty ba_bs;
+  var popDensity poverty ba_bs;
 run;
 
 proc glm data=stdcdi;
@@ -422,4 +424,79 @@ proc glm data=stdcdi;
   ods select parameterEstimates;
 run;
 
+proc stdize data=cdi out=StdCDI method=mean
+    sprefix=C oprefix=O;
+  var popDensity poverty ba_bs;
+run;
 
+/*1B*/
+proc glm data=stdcdi;
+  model crimeRate = CpopDensity|Cpoverty|Cba_bs;
+  ods select parameterEstimates;
+  ods output parameterEstimates=Parms;
+run;
+
+/*2A*/
+/**1A Model...**/
+proc glm data=stdcdi;
+  model crimeRate = CpopDensity Cpoverty Cba_bs;
+  ods select parameterEstimates;
+run;
+/*2A*/
+proc format;
+  value region
+   1='Northeast'
+   2='North-Central'
+   3='South'
+   4='West'
+  ;
+run;
+proc glm data=stdcdi;
+  class region;
+  format region region.;
+  model crimeRate = Region CpopDensity Cpoverty Cba_bs 
+        / solution noint;
+  ods select parameterEstimates;
+run;
+
+proc glm data=stdcdi;
+  class region;
+  format region region.;
+  model crimeRate = Region|CpopDensity 
+                    Region|Cpoverty 
+                    Region|Cba_bs 
+        / solution;
+  ods select parameterEstimates;
+run;
+
+ods trace on;
+proc glm data=stdcdi;
+  class region;
+  format region region.;
+  model crimeRate = Region|CpopDensity 
+                    Region|Cpoverty 
+                    Region|Cba_bs 
+        / solution;
+  ods select parameterEstimates 'Type III Model ANOVA';
+run;
+
+proc glm data=stdcdi;
+  class region(ref='South');
+  format region region.;
+  model crimeRate = Region|CpopDensity 
+                    Region|Cpoverty 
+                    Region|Cba_bs 
+        / solution;
+  ods select parameterEstimates 'Type III Model ANOVA';
+run;
+
+/**2C**/
+proc glm data=stdcdi;
+  class region;
+  format region region.;
+  model crimeRate = Region|CpopDensity|Cpoverty|Cba_bs @2
+        / solution;
+  /** @k limits to up to interactions/products of any
+        k variables**/
+  ods select parameterEstimates 'Type III Model ANOVA';
+run;
