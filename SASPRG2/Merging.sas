@@ -89,3 +89,68 @@ data parkStats(keep=parkCode parkName Year Month DayVisits)
     else if inCode then output parkOther;
       else output unknownStats;
 run;
+
+/*Steps a and b*/
+proc sort data=pg2.np_CodeLookup out=sortnames(keep=ParkName ParkCode);
+  by ParkName;
+run;
+
+proc sort data=pg2.np_final out=sortfinal;
+  by ParkName;
+run;
+
+data highuse(keep=ParkCode ParkName);
+  merge sortfinal sortnames;
+  by ParkName;
+  if DayVisits ge 5000000;
+  *where DayVisits ge 5000000;
+run;
+
+data highuseB(keep=ParkCode ParkName);
+  merge sortfinal(in=inFinal where=(DayVisits ge 5000000))
+        sortnames;
+  by ParkName;
+  if inFinal;
+  *if DayVisits ge 5000000;
+  *where DayVisits ge 5000000;
+run;
+
+/*Step c*/
+proc sort data=pg2.np_species
+        out=birds(keep=ParkCode Species_ID Scientific_Name Common_Names);
+  by ParkCode Species_ID;
+  where Category='Bird' and Abundance='Common';
+run;
+
+proc sort data=highuse;
+  by ParkCode;
+run;
+
+data birdsLP;
+  merge highuse(in=HighUse) birds;
+  by parkCode;
+  if HighUse;
+run;
+
+
+/**could progress the other way...**/
+proc sort data=pg2.np_CodeLookup out=sortnames2(keep=ParkName ParkCode);
+  by ParkCode;
+run;
+
+data one;
+  merge birds(in=HasBirds) sortnames2;
+  by ParkCode;
+  if HasBirds;
+run;
+
+proc sort data=one;
+  by ParkName;
+run;
+
+data highuseC;
+  merge one sortfinal;
+  by ParkName;
+  if DayVisits ge 5000000;
+  *where DayVisits ge 5000000;
+run;
