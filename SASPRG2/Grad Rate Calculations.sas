@@ -13,6 +13,22 @@ data grads cohort;
 
 run;
 
+data gradRates1B;
+  merge gradSort(where=(group contains 'Completers') 
+               rename=(men=GradMen women=GradWomen total=GradTotal))
+        gradSort(where=(group contains 'Incoming'));
+  by unitId;
+
+  gradRate = GradTotal/Total;
+  gradRateM = GradMen/Men;
+  gradRateW = GradWomen/Women;
+
+  format gradRate: percent8.2;
+
+  drop group;
+run;
+
+
 data gradRates1;
   merge grads(rename=(men=GradMen women=GradWomen total=GradTotal))
         cohort;
@@ -24,7 +40,7 @@ data gradRates1;
 
   format gradRate: percent8.2;
 
-  drop total group;
+  drop group;
 run;
 
 data gradRates2;
@@ -39,10 +55,31 @@ data gradRates2;
   end;
 
   if last.unitID then do; 
-    RateMen=GradTotal/Total;
+    RateTotal=GradTotal/Total;
     RateWomen=GradWomen/Women;
     RateMen=GradMen/Men;
     output;
   end;
   format Rate: percent8.2;
+  drop group;
 run;
+
+proc transpose data=gradsort out=gradsortT(rename=(col1=Grads col2=Incoming) drop=_label_) name=Type;
+  by unitID;
+  var Total Women Men;
+  *id group;
+run;
+
+data gradRates3;
+  set gradSortT;
+  Rate = Grads/Incoming;
+
+  format rate percent8.2;
+run;
+
+proc sgplot data=gradrates3;
+  hbar type / response=rate stat=mean;
+run;
+
+
+
