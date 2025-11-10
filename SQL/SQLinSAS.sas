@@ -304,3 +304,78 @@ proc sql;
     group by stock
   ;
 quit;
+
+proc sql;
+  *create table ex5preliminary as 
+    select stock, year(date) as Year,
+           mean(high) as highMean format=dollar12.2, 
+           mean(low) as lowMean format=dollar12.2,
+           calculated highMean - calculated lowMean 
+                      as meanDiff format=dollar12.2
+    from sashelp.stocks
+    where year(date) between 2000 and 2005
+    group by stock, Year
+  ;
+  create table ex5 as 
+    select stock, year(date) as Year,
+           mean(high) as highMean format=dollar12.2, 
+           mean(low) as lowMean format=dollar12.2,
+           calculated highMean - calculated lowMean 
+                      as meanDiff format=dollar12.2
+    from sashelp.stocks
+    where year(date) between 2000 and 2005
+    group by stock, Year
+    having meanDiff gt 10
+  ;
+  create table ex5B as 
+    select stock, year(date) as Year,
+           mean(high) as highMean format=dollar12.2, 
+           mean(low) as lowMean format=dollar12.2,
+           calculated highMean - calculated lowMean 
+                      as meanDiff format=dollar12.2
+    from sashelp.stocks
+    where calculated year between 2000 and 2005
+    group by stock, Year
+    having meanDiff gt 10
+  ;
+  *create table ex5v2 as 
+    select stock, year(date) as Year,
+           mean(high) as highMean format=dollar12.2, 
+           mean(low) as lowMean format=dollar12.2,
+           calculated highMean - calculated lowMean 
+                      as meanDiff format=dollar12.2
+    from sashelp.stocks
+    where year(date) between 2000 and 2005
+          and calculated meanDiff gt 10
+          /**can't be here because meanDiff is 
+              derived from summary functions (mean)**/
+    group by stock, Year
+  ;
+  *create table ex5v3 as 
+    select stock, year(date) as Year,
+           mean(high) as highMean format=dollar12.2, 
+           mean(low) as lowMean format=dollar12.2,
+           calculated highMean - calculated lowMean 
+                      as meanDiff format=dollar12.2
+    from sashelp.stocks
+    group by stock, Year
+    having meanDiff gt 10
+            and year(date) between 2000 and 2005
+            /**goes back to the table and pulls every record
+              that satisfies this and remerges onto
+                the summary**/
+  ;
+  create table ex5v4 as 
+    select stock, year(date) as Year,
+           mean(high) as highMean format=dollar12.2, 
+           mean(low) as lowMean format=dollar12.2,
+           calculated highMean - calculated lowMean 
+                      as meanDiff format=dollar12.2
+    from sashelp.stocks
+    group by stock, Year
+    having meanDiff gt 10
+            and year between 2000 and 2005
+            /**this uses the variable constructed and put
+                into the grouping, so it subsets that**/
+  ;
+quit;
