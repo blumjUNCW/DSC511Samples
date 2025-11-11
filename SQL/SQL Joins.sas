@@ -172,3 +172,47 @@ proc sql;
              on ParkCode eq Code 
   ;
 quit;
+
+/**Exercise 1**/
+proc sql;
+  create table Exercise1 as 
+    select Event, BasinName, StartDate, EndDate, MaxWindMPH, cost format=dollar18.
+    from SASData.Storm_Damage as damage inner join
+           SASData.Storm_Final as final
+              on upcase(scan(Event, -1)) eq Name  
+                /**get the equivalent name from Event in Damage, match to Name in Final**/
+                  and Year(date) eq Season
+                  /**and make an equivalent to Season in Final from Date in Damage**/
+  ;
+quit;
+
+/**Extra--Grad Rate Calculations...***/
+proc sql;
+  create table GradRates as 
+    select Grads.UnitId, Grads.Total/Cohort.Total as GradRate, 
+                         Grads.Men/Cohort.Men as GradRateMen,
+                         Grads.Women/Cohort.Women as GradRateWomen
+    from ipeds.Graduation(where=(group contains 'Completers')) as Grads
+            inner join
+         ipeds.Graduation(where=(group contains 'Incoming')) as Cohort
+      on Grads.UnitID eq Cohort.UnitID
+  ;
+quit;
+
+proc sql;
+  create table GradRatesPublic as 
+    select Grads.UnitId, Grads.Total/Cohort.Total as GradRate, 
+                         Grads.Men/Cohort.Men as GradRateMen,
+                         Grads.Women/Cohort.Women as GradRateWomen
+    from (select * from ipeds.Graduation where group contains 'Completers') as Grads
+          /**can put a query anywhere a table is permitted, called an in-line view**/
+            inner join
+         (select * from ipeds.Graduation where group contains 'Incoming') as Cohort
+      on Grads.UnitID eq Cohort.UnitID
+    where Grads.unitID in (select ch.unitID from IPEDS.Characteristics as ch where control eq 1)
+                            /**UnitIDs for public institutions...**/
+  ;
+  *select ch.unitID, control, instnm from IPEDS.Characteristics as ch where control eq 1;
+quit;
+
+
