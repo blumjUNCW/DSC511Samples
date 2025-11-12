@@ -206,3 +206,82 @@ proc sql;
       from sasdata.np_2015
   ;
 quit;
+
+
+proc sql;
+  select c21enprf, mean(tuition2) format=dollar12.2
+   from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+     on tc.unitID eq ch.unitID
+    where c21enprf gt 0
+    group by c21enprf
+  union
+  select control, mean(tuition2) format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+      on tc.unitID eq ch.unitID
+    where control gt 0
+    group by control
+  ;/**aligning the stratification variables and the averages seems reasonable 
+      for a union, but the result is strange
+
+      each of control and c21enprf are numeric variables that are formatted--
+        the column constructed by the union inherits the first format 
+        encountered**/
+  select control, mean(tuition2) format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+      on tc.unitID eq ch.unitID
+    where control gt 0
+    group by control
+  union
+  select c21enprf, mean(tuition2) format=dollar12.2
+   from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+     on tc.unitID eq ch.unitID
+    where c21enprf gt 0
+    group by c21enprf
+ ;
+quit;
+
+proc sql;
+  select c21enprf as type, mean(tuition2) as AvgInState format=dollar12.2
+   from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+     on tc.unitID eq ch.unitID
+    where c21enprf gt 0
+    group by c21enprf
+  union corresponding
+  select control as type, mean(tuition2) as AvgInState format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+      on tc.unitID eq ch.unitID
+    where control gt 0
+    group by control
+  ;
+quit;
+
+proc sql;
+  select put(c21enprf,c21enprf.) as Type,
+          mean(tuition2) format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+          on tc.unitID eq ch.unitID
+    where c21enprf gt 0
+    group by Type
+  union
+  select put(control,control.) as Type,
+          mean(tuition2) format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+          on tc.unitID eq ch.unitID
+    where control gt 0
+    group by Type
+  ;
+  select catx('-','Carnegie',put(c21enprf,1.),put(c21enprf,c21enprf.)) as Type,
+          mean(tuition2) format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+          on tc.unitID eq ch.unitID
+    where c21enprf gt 0
+    group by Type
+  union
+  select catx('-','Control',put(control,1.),put(control,control.)) as Type,
+          mean(tuition2) format=dollar12.2
+    from ipeds.tuitionAndCosts as tc inner join ipeds.characteristics as ch
+          on tc.unitID eq ch.unitID
+    where control gt 0
+    group by Type
+  ;
+quit;
