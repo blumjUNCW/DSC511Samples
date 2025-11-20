@@ -179,6 +179,105 @@ run;
 
 ods graphics off;
 proc glm data=sashelp.heart;
+  class weight_status;
+  model systolic = weight_status;
+  lsmeans weight_status / diff=control adjust=dunnett cl;
+  *ods select lsmeans lsmeandiffcl;
+run;
+
+proc glm data=sashelp.heart;
+  class smoking_status;
+  model systolic = smoking_status;
+  lsmeans smoking_status / diff=control('Non-smoker') cl;
+  *ods select lsmeans lsmeandiffcl;
+run;
+
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status sex / solution clparm;
+    /**two categorical predictors...**/
+  lsmeans chol_status / diff=all cl;
+  lsmeans sex / diff cl;
+    /**can look at each with a separate LSMEANS**/
+  *ods select 'Type III Model ANOVA' lsmeans diff;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status sex / solution clparm;
+  lsmeans chol_status sex / diff=all adjust=tukey;
+    /**for something like sex with 2 levels, the Tukey
+        adjustment is no adjustment at all--
+        Tukey adjusts for multiple comparisons, here the 
+            "multiple" is 1**/
+  lsmeans sex / diff;
+  *ods select 'Type III Model ANOVA' lsmeans diff;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmeans chol_status*sex / lines adjust=tukey ;
+  lsmeans sex / lines adjust=tukey;
+  ods select 'Type III Model ANOVA' lsmlines;
+  ods output lsmeans=means;
+run;
+
+proc sgplot data=means;
+  series y=lsmean x=chol_status / group=sex markers markerattrs=(symbol=circlefilled)
+                        lineattrs=(pattern=2);
+run;
+proc sgplot data=means;
+  series y=lsmean x=sex / group=chol_status markers markerattrs=(symbol=circlefilled)
+                        lineattrs=(pattern=2) nomissinggroup;
+run;
+
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  lsmeans chol_status*sex / slice=sex slice=chol_status;
+  *ods select slicedANOVA;
+run;
+
+
+ods graphics off;
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  /**in MIXED, the CLASS and MODEL syntax is the same...**/
+  slice chol_status*sex / sliceby=sex diff adjust=tukey;
+    /**it does have an LSMEANS statement, but for interactions
+      it also has this SLICE statement**/
+  ods select sliceTests;
+  ods output sliceDiffs=slDiff;
+run;
+proc print data=slDiff;
+  by slice;
+  id slice;
+  var Chol_Status _Chol_Status estimate adjp;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmeans chol_status*sex / diff=all adjust=tukey ;
+  ods select lsmeans diff;
+run;
+
+
+
+
+
+
+ods graphics off;
+proc glm data=sashelp.heart;
   class smoking_status;
   model systolic = weight smoking_status / solution clparm;
   lsmeans smoking_status; /**No AT setting, it plugs in the mean of the quantitative
