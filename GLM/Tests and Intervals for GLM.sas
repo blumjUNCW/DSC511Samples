@@ -245,7 +245,6 @@ proc glm data=sashelp.heart;
   *ods select slicedANOVA;
 run;
 
-
 ods graphics off;
 proc mixed data=sashelp.heart;
   class chol_status sex;
@@ -271,44 +270,174 @@ proc glm data=sashelp.heart;
   ods select lsmeans diff;
 run;
 
+/**additive model for one categorical and one quantitative predictor**/
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status;
+  model systolic = weight chol_status / solution;
+  lsmeans chol_status / diff adjust=tukey;
+  ods select parameterEstimates lsmeans diff;
+run;
 
+proc glm data=sashelp.heart;
+  class chol_status;
+  model systolic = weight chol_status;
+  lsmeans chol_status / at weight=100 cl adjust=tukey;
+  lsmeans chol_status / at weight=125 cl adjust=tukey;
+  lsmeans chol_status / at weight=150 cl adjust=tukey;
+  lsmeans chol_status / at weight=200 cl adjust=tukey;
+  lsmeans chol_status / at means cl adjust=tukey;
+  ods select lsmeans lsmeandiffcl;
+run;
 
+proc standard data=sashelp.heart out=heartSTD mean=0;
+  var weight;
+run;
+ods graphics off;
+proc glm data=heartSTD;
+  class chol_status;
+  model systolic = weight chol_status / solution;
+  lsmeans chol_status / diff adjust=tukey;
+  ods select parameterEstimates lsmeans diff;
+run;
 
-
+ods graphics off;
+proc glm data=heartSTD;
+  class chol_status;
+  model systolic = weight chol_status;
+  lsmeans chol_status / at weight=-50 cl adjust=tukey;
+  lsmeans chol_status / at weight=-25 cl adjust=tukey;
+  lsmeans chol_status / at weight=50 cl adjust=tukey;
+  lsmeans chol_status / at means cl adjust=tukey;
+  ods select lsmeans lsmeandiffcl;
+run;
 
 ods graphics off;
 proc glm data=sashelp.heart;
-  class smoking_status;
-  model systolic = weight smoking_status / solution clparm;
-  lsmeans smoking_status; /**No AT setting, it plugs in the mean of the quantitative
-                            predictor(s)**/
-  lsmeans smoking_status / at weight = 125;
-  lsmeans smoking_status / at weight = 150;
-  lsmeans smoking_status / at weight = 175;
-run;
-
-
-ods graphics off;
-proc glm data=sashelp.heart;
-  class smoking_status;
-  model systolic = weight smoking_status / solution clparm;
-  lsmeans smoking_status /  diff=all; 
-  lsmeans smoking_status / at weight = 125 diff=all;
-  lsmeans smoking_status / at weight = 150 diff=all;
-  lsmeans smoking_status / at weight = 175 diff=all;
-  ods select diff;
+  class sex;
+  model systolic = weight|sex / solution;
+  lsmeans sex / diff;
+  lsmeans sex / diff at weight=100;
+  lsmeans sex / diff at weight=125;
+  lsmeans sex / diff at weight=150;
+  lsmeans sex / diff at weight=200;
+  *ods select lsmeans diff;
 run;
 
 ods graphics off;
 proc glm data=sashelp.heart;
-  class smoking_status;
-  model systolic = weight|smoking_status / solution clparm;
-  lsmeans smoking_status /  diff=all; 
-  lsmeans smoking_status / at weight = 125 diff=all;
-  lsmeans smoking_status / at weight = 150 diff=all;
-  lsmeans smoking_status / at weight = 175 diff=all;
-  ods select diff;
+  class sex;
+  model systolic = weight|sex AgeAtStart|sex / solution;
+  lsmeans sex / at means diff=all;
+  lsmeans sex / at weight = 125 diff=all;
+  lsmeans sex / at weight = 175 diff=all;
+  lsmeans sex / at AgeAtStart = 35 diff=all;
+  lsmeans sex / at AgeAtStart = 55 diff=all;
+  lsmeans sex / at (weight AgeAtStart) = (125 35) diff=all;
+  lsmeans sex / at (weight AgeAtStart) = (175 35) diff=all;
+  lsmeans sex / at (weight AgeAtStart) = (125 55) diff=all;
+  lsmeans sex / at (weight AgeAtStart) = (175 55) diff=all;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmeans chol_status*sex;
+  estimate 'Chol=Desirable, Female' intercept 1 /**include the intercept**/
+                                    chol_status 0 1 0 /*inc. desirable chol**/
+                                    sex 1 0 /*inc. females*/
+                                    chol_status*sex 0 0 1 0 0 0 
+                                      /*also include females w/ des. chol*/
+                                    ;
+  estimate 'Chol=Desirable, Male' intercept 1
+                                  sex 0 1
+                                  chol_status 0 1 0
+                                  chol_status*sex 0 0 0 1 0 0;
+  *ods select parameterEstimates estimates;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmeans chol_status*sex chol_status;
+  estimate 'Chol=Desirable, Male' intercept 1
+                                  sex 0 1
+                                  chol_status 0 1 0
+                                  chol_status*sex 0 0 0 1 0 0;
+  estimate 'Chol=Desirable, Male v2' intercept 1
+                                  sex 0 0
+                                  chol_status 0 1 0
+                                  chol_status*sex 0 0 0 0 0 0;
+      /**can't get these coefficients from rows in X, so it does
+          not produce an estimate**/
+  estimate 'Chol=Desirable, Male v3' intercept 1
+                                  chol_status 0 1 0;
+    /**this is really the mean for desirable cholesterol across
+        both sexes--SAS chooses coefficients for sex and chol_status*sex
+        relative to sample size to estimate across sexes**/
+
+  *ods select parameterEstimates estimates;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmeans chol_status*sex / diff cl;
+  estimate 'Chol=Desirable, Female' intercept 1 /**include the intercept**/
+                                    chol_status 0 1 0 /*inc. desirable chol**/
+                                    sex 1 0 /*inc. females*/
+                                    chol_status*sex 0 0 1 0 0 0 
+                                      /*also include females w/ des. chol*/
+                                    ;
+  estimate 'Chol=Desirable, Male' intercept 1
+                                  sex 0 1
+                                  chol_status 0 1 0
+                                  chol_status*sex 0 0 0 1 0 0;
+  estimate 'Des. Chol, Female-Male' intercept 0
+                 sex 1 -1
+                 chol_status 0 0 0
+                 chol_status*sex 0 0 1 -1 0 0;
+                 /**difference in the first set of coefficients and the
+                    second**/
+  estimate 'Des. Chol, Female-Male v2' sex 1 -1
+                                    chol_status*sex 0 0 1 -1 0 0;
+  *ods select parameterEstimates estimates;
 run;
 
 
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  lsmeans chol_status*sex;
+  estimate 'Borderline: Female-Male' sex 1 -1
+                                     chol_status*sex 1 -1 0  0 0 0;
+  estimate 'Desirable: Female-Male'  sex 1 -1
+                                     chol_status*sex 0  0 1 -1 0 0;
+  estimate 'High: Female-Male'       sex 1 -1
+                                     chol_status*sex 0  0 0  0 1 -1;
+  estimate 'Female, Male diff, Borderline vs Desirable'
+                              chol_status*sex 1 -1 -1 1 0 0;
+  estimate 'Female, Male diff, Borderline vs High'
+                              chol_status*sex 1 -1 0 0 -1 1;
+  estimate 'Female, Male diff, Desirable vs High'
+                              chol_status*sex 0 0 1 -1 -1 1;
+  ods select estimates lsmeans;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  lsmeans chol_status*sex / diff cl;
+  estimate 'Borderline-Desirable, Females' chol_status 1 -1 0
+                                           chol_status*sex 1 0 -1 0 0 0;
+  estimate 'Borderline-Desirable, Males' chol_status 1 -1 0
+                                         chol_status*sex 0 1 0 -1 0 0;
+  estimate 'Borderline-Desirable, Females-Males'
+                                         chol_status*sex 1 -1 -1 1 0 0;
+  *ods select estimates lsmeans;
+run;
 
