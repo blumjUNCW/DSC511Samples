@@ -407,7 +407,7 @@ proc glm data=sashelp.heart;
   *ods select parameterEstimates estimates;
 run;
 
-
+ods graphics off;
 proc glm data=sashelp.heart;
   class chol_status sex;
   model systolic = chol_status|sex;
@@ -441,3 +441,97 @@ proc glm data=sashelp.heart;
   *ods select estimates lsmeans;
 run;
 
+
+ods graphics off;
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  *estimate 'Borderline: Female-Male' sex 1 -1
+                                     chol_status*sex 1 -1 0 0 0 0 / cl;
+  *estimate 'Female, Male diff, Borderline vs Desirable'
+                                     chol_status*sex 1 -1 -1 1 0 0 / cl;
+  /**ESTIMATE in MIXED looks just like it does in GLM, but it
+    does let you get a confidence interval as well**/
+  lsmestimate chol_status*sex 'Borderline: Female-Male' 
+              1 -1 0 0 0 0 / cl e;
+  lsmestimate chol_status*sex 'Female, Male diff, Borderline vs Desirable'
+              1 -1 -1 1 0 0 / cl e;
+    /***LSMESTIMATE is and estimate applied to a set of lsmeans...
+          LSMESTIMATE effect "label" coefficients;
+          coefficients are applied to the means generated for the chosen
+          effect**/
+  lsmeans chol_status*sex;
+run;
+
+
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmestimate sex*chol_status '?' 
+              1 -1 0 0 0 0 / cl e;
+  lsmestimate chol_status*sex 'Female, Male diff, Borderline vs Desirable'
+              1 -1 -1 1 0 0 / cl e;
+  lsmeans sex*chol_status;
+run;/**lsmeans is always ordered on variable names first, values with variable
+        second**/
+
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = sex|chol_status / solution;
+  lsmestimate sex*chol_status '?' 
+              1 -1 0 0 0 0 / cl e;
+  lsmestimate chol_status*sex 'Female, Male diff, Borderline vs Desirable'
+              1 -1 -1 1 0 0 / cl e;
+  lsmeans sex*chol_status;
+run;/**lsmeans is always ordered on variable names first, values with variable
+        second**/
+
+ods graphics off;
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex / solution;
+  lsmestimate chol_status 'Mean for high cholesterol group vs. rest' 
+              0.5 0.5 -1 / cl e;
+  lsmestimate chol_status 'mean' 
+              0.33 0.33 0.33 / cl e;
+  lsmestimate chol_status 'mean B' 
+              1 1 1 /divisor=3 cl e;
+  lsmeans chol_status;
+run;
+
+
+proc mixed data=sashelp.heart;
+  class chol_status;
+  model systolic = smoking|chol_status / solution cl;
+  where sex eq 'Female' and ageAtStart le 50;
+  estimate 'Smoking Effect, Borderline Chol'
+            smoking 1 smoking*chol_status 1 0 0 / cl;
+  estimate 'Smoking Effect, Desirable Chol'
+            smoking 1 smoking*chol_status 0 1 0 / cl;
+  estimate 'Smoking Effect, High Chol'
+            smoking 1 smoking*chol_status 0 0 1 / cl;
+  estimate 'Difference in Smoking effect: Borderline vs. Desirable'
+            smoking*chol_status 1 -1 0 / cl;
+  estimate 'Difference in Smoking effect: Borderline vs. High'
+            smoking*chol_status 1 0 -1 / cl;
+  estimate 'Difference in Smoking effect: Desirable vs. High'
+            smoking*chol_status 0 1 -1 / cl;
+  lsmestimate chol_status '??' 1 -1 0 / at means;
+  lsmestimate chol_status '??' 1 -1 0 / at smoking=0;
+  lsmestimate chol_status '??' 1 -1 0 / at smoking=10;
+    /**LSMESTIMATE (and SLICE) will not accept this interaction because
+      smoking is quantitative, but LSMESTIMATE does have the AT like 
+      LSMEANS, so you could work on Chol_Status at different values 
+      of Smoking**/
+run;
+
+
+proc mixed data=sashelp.heart;
+  class chol_status;
+  model systolic = smoking|chol_status / solution cl;
+  where sex eq 'Female' and ageAtStart le 50;
+  estimate 'Smoking Effect, Borderline Chol'
+            intercept 1 chol_status 1 0 0
+            smoking 10 smoking*chol_status 10 0 0 / cl;
+  lsmeans chol_status / at smoking=10;
+run;
