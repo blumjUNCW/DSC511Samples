@@ -92,7 +92,7 @@ proc glm data=sasdata.realestate;
   lsmeans quality / at sq_ft=2100 diff=all lines;
   lsmeans quality / at sq_ft=2600 diff=all lines;
   lsmeans quality / at sq_ft=3100 diff=all lines;
-  ods select lsmlines parameterEstimates;
+  *ods select lsmlines parameterEstimates;
 run;/**average price stays in its ordinal ranking
     vs quality for all square footages, but the 
     differences appear to change...
@@ -106,6 +106,33 @@ run;/**average price stays in its ordinal ranking
     high and medium quality homes at 3300 sqft.
    Estimate that difference at 2200 sqft.
    Estimate the difference in those differences**/
+proc sgplot data=sasdata.realestate;
+  reg x=sq_ft y=price / group=quality degree=1 markerattrs=(symbol=circle size=4pt);
+run;
+
+ods graphics off;
+proc glm data=sasdata.realestate;
+  class quality;
+  model price = quality|sq_ft / solution;
+  lsmeans quality / at sq_ft=2200 diff=all lines;
+  lsmeans quality / at sq_ft=3300 diff=all lines;
+  estimate 'High Quality Price @3300 sq.ft.' intercept 1
+                                             quality 1 0 0
+                                             sq_ft 3300
+                                             sq_ft*quality 3300 0 0;
+  estimate 'Medium Quality Price @3300 sq.ft.' intercept 1
+                                             quality 0 1 0
+                                             sq_ft 3300
+                                             sq_ft*quality 0 3300 0;
+  estimate 'High - Medium Price @3300 sq.ft.' quality 1 -1 0
+                                              sq_ft*quality 3300 -3300 0;
+  estimate 'High - Medium Price @2200 sq.ft.' quality 1 -1 0
+                                              sq_ft*quality 2200 -2200 0;
+  estimate 'High - Medium Price @3300 vs 2200 sq.ft.' 
+                                              sq_ft*quality 1100 -1100 0;
+  *ods select lsmlines parameterEstimates;
+run;
+
 
 /**Going back to the CDI data, construct a population density
     variable and include it with region and ba_bs, putting in each
@@ -166,3 +193,165 @@ proc glm data=cdi;
       changing one and holding the other steady***/
   ods select lsmlines;
 run;
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  format region reg.;
+  model inc_per_cap = region|ba_bs region|popDensity / solution;   
+  lsmeans region / at (ba_bs popDensity)=(15 300) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 300) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 300) lines adjust=tukey;
+  ods select lsmlines;
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  format region reg.;
+  model inc_per_cap = region|ba_bs region|popDensity / solution;   
+  lsmeans region / at (ba_bs popDensity)=(20 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 650) lines adjust=tukey;
+  *ods select lsmlines;
+run;
+
+proc sgplot data=cdi;
+  reg x=popDensity y=inc_per_cap / group=region degree=1 
+                                      markerattrs=(symbol=circle size=4pt);
+  where popDensity le 5000;
+run;
+
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  format region reg.;
+  model inc_per_cap = region|ba_bs region|popDensity / solution;   
+  lsmeans region / at (ba_bs popDensity)=(15 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 500) lines adjust=tukey;
+  ods select lsmlines diff;
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  format region reg.;
+  model inc_per_cap = region|ba_bs region|popDensity / solution;   
+  lsmeans region / at (ba_bs popDensity)=(15 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 500) lines adjust=tukey;
+  ods select lsmlines diff;
+  /**with no interaction between the quantitative covariates,
+      this grid is unnecessary, the relationships cannot be inconsisent
+      across varying combinations of ba/bs and density**/
+run;
+
+/*If you put that interaction in, it is significant and then
+    the grid is the correct approach**/
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  format region reg.;
+  model inc_per_cap = region|ba_bs|popDensity / solution; 
+  lsmeans region / at (ba_bs popDensity)=(15 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 500) lines adjust=tukey;
+  ods select lsmlines;
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  format region reg.;
+  model inc_per_cap = region|ba_bs|popDensity / solution; 
+  lsmeans region / at (ba_bs popDensity)=(15 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(15 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(20 500) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 200) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 350) lines adjust=tukey;
+  lsmeans region / at (ba_bs popDensity)=(25 500) lines adjust=tukey;
+  ods select lsmlines;
+run;
+
+/**Add in crime rate to our potential predictors, but we'll make it categorical.
+      Median rate is about 52.5 crimes per 1000 people--make (or format) a predictor
+      that is binary, above the median or below.
+
+      put that into a model (for per-capita income) with region and ba/bs rate and 
+        all of their interactions. Interpret what is significant...**/
+
+data cdi;
+  set sasdata.cdi;
+  popDensity = pop/land;
+  CrimeRate = crimes/(pop/1000); *or crimes/pop*1000;
+run;
+proc means data=cdi median;
+  var CrimeRate;
+run;
+
+proc format;
+  value cr
+  low-52.5='Bottom Half'
+  52.5-high='Top Half'
+  ;
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class region CrimeRate;
+  format region reg. CrimeRate cr.;
+  model inc_per_cap = region|ba_bs|CrimeRate / solution; 
+run;
+
+/**three factor interaction is not important...eliminate it**/
+ods graphics off;
+proc glm data=cdi;
+  class region CrimeRate;
+  format region reg. CrimeRate cr.;
+  model inc_per_cap = region|ba_bs|CrimeRate @2 / solution; 
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class region CrimeRate;
+  format region reg. CrimeRate cr.;
+  model inc_per_cap = ba_bs|region ba_bs|CrimeRate / solution; 
+  lsmeans CrimeRate / at ba_bs=10 diff;
+  lsmeans CrimeRate / at ba_bs=15 diff;
+  lsmeans CrimeRate / at ba_bs=20 diff;
+  lsmeans CrimeRate / at ba_bs=25 diff;
+  lsmeans CrimeRate / at ba_bs=30 diff;
+run;
+
+/**keep crimeRate as is, create a binary pop. density variable below 350 vs above 350,
+    make a 4-category ba/bs: below 15 lowest,
+                             15-20 low,
+                             20-25 high,
+                             25+ highest
+
+  for response is inc. per-capita, put all of these three categorical precitors in
+    with all interactions and interpret**/
