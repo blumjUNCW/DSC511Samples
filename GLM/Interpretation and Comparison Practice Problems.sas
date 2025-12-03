@@ -355,3 +355,89 @@ run;
 
   for response is inc. per-capita, put all of these three categorical precitors in
     with all interactions and interpret**/
+
+data cdi;
+  set sasdata.cdi;
+  popDensity = pop/land;
+  CrimeRate = crimes/(pop/1000); *or crimes/pop*1000;
+run;
+
+proc format;
+  value cr
+  low-52.5='1. Bottom Half'
+  52.5-high='2. Top Half'
+  ;
+  value density
+  low-350 = '1. Low Density'
+  350-high = '2. High Density'
+  ;
+  value babs
+  low-15 = '1. Lowest'
+  15-20 = '2. Low'
+  20-25 = '3. High'
+  25-high = '4. Highest'
+  ;
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class CrimeRate ba_bs popDensity;
+  format CrimeRate cr. ba_bs babs. popDensity density.;
+  model inc_per_cap = CrimeRate|ba_bs|popDensity / solution; 
+run;
+
+ods graphics off;
+proc glm data=cdi;
+  class CrimeRate ba_bs popDensity;
+  format CrimeRate cr. ba_bs babs. popDensity density.;
+  model inc_per_cap = CrimeRate|ba_bs|popDensity / solution; 
+  lsmeans crimeRate*ba_bs*popDensity / lines adjust=tukey;
+run;
+
+ods graphics off;
+ods trace on;
+proc mixed data=cdi;
+  class CrimeRate ba_bs popDensity;
+  format CrimeRate cr. ba_bs babs. popDensity density.;
+  model inc_per_cap = CrimeRate|ba_bs|popDensity; 
+  slice crimeRate*ba_bs*popDensity / sliceby=crimeRate lines 
+                          adjust=tukey;
+  ods select SliceLines;
+run;
+
+ods graphics off;
+ods trace on;
+proc mixed data=cdi;
+  class CrimeRate ba_bs popDensity;
+  format CrimeRate cr. ba_bs babs. popDensity density.;
+  model inc_per_cap = CrimeRate|ba_bs|popDensity; 
+  slice popDensity*crimeRate*ba_bs / 
+                          sliceby=popDensity*crimeRate lines 
+                          adjust=tukey;
+  ods select SliceLines;
+run;
+
+ods graphics off;
+ods trace on;
+proc mixed data=cdi;
+  class CrimeRate ba_bs popDensity;
+  format CrimeRate cr. ba_bs babs. popDensity density.;
+  model inc_per_cap = CrimeRate|ba_bs|popDensity; 
+  slice popDensity*crimeRate*ba_bs / 
+                          sliceby=popDensity*ba_bs lines 
+                          adjust=tukey;
+  ods select SliceLines;
+run;
+
+ods graphics off;
+ods trace on;
+proc mixed data=cdi;
+  class CrimeRate ba_bs popDensity;
+  format CrimeRate cr. ba_bs babs. popDensity density.;
+  model inc_per_cap = CrimeRate|ba_bs|popDensity; 
+  slice popDensity*crimeRate*ba_bs /  
+                          sliceby=crimeRate*ba_bs lines 
+                          adjust=tukey;
+  ods select SliceLines;
+run;
+
