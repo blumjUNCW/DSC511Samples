@@ -1,3 +1,4 @@
+/**Check**/
 data work.cars; 
   infile '~/SASData/cars.datfile' dsd dlm='09'x firstobs=2 missover; 
     /**DSD -> Delimiter Sensitive Data, invoking this does three things:
