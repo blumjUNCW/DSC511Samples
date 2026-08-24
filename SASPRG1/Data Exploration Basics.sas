@@ -19,7 +19,7 @@ proc sort data=SASData.cars out=CarsSort;
   by make;
  run;
 
- proc sort data=SASData.cars out=CarsCheck nodupkey;
+proc sort data=SASData.cars out=CarsCheck nodupkey;
   /**NODUPKEY -- remove duplicates on the "key",
     the key is the set of BY variables*/
   by make;
@@ -27,4 +27,14 @@ proc sort data=SASData.cars out=CarsSort;
 
 proc means data=SASData.cars min q1 median q3 max;
    var length wheelbase weight;
+run;
+
+proc sort data=SASData.cars out=CarsSort;
+  by Origin type descending msrp;
+  /*descending applies to the variable that immediately follows it*/
+run;
+
+proc sort data=SASData.cars out=CarsCheck dupout=Duplicates nodupkey;
+  /**dupout= is a dataset of the duplicates*/
+  by make;
 run;
