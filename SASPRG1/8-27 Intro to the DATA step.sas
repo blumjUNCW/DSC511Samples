@@ -127,3 +127,77 @@ data scan;
   scan1space = scan(left(model),1,' ');
   scan2space = scan(left(model),2,' ');
 run;
+
+data find;
+  set sashelp.cars;
+
+  find1 = find(left(model),'A');
+  find2 = find(left(model),'A','I');
+  find3 = find(left(lowcase(model)),'a');
+  *if find(left(model),'A') then output;
+  *if model contains 'A' then output;
+
+run;
+
+data test;
+  set sashelp.cars;
+  where find(left(model),'A');
+run;
+
+proc print data=sashelp.cars;
+  where find(left(model),'A');
+  /*functions are legal in WHERE statements in
+      procedures*/
+run;
+
+data reverse;
+  set sashelp.cars;
+  reverseM = reverse(model);
+  reverseM2= left(reverse(model));
+run;
+
+data substr;
+    set sashelp.cars;
+    substr1 = substr(Make,3);
+    substr2 = substr(Make,3,1);
+    substr3 = substr(Make,1,1);
+    substr4 = substr(left(reverse(Make)),1,1);
+run;
+
+data translations;
+  set sashelp.cars;
+  model2 = tranwrd(model,'4dr', 'Four-door');
+  model3 = transtrn(model,'4dr', 'Four-door');
+
+
+  model2B = tranwrd(model,'4dr', '');
+  model3B = transtrn(model,'4dr', '');
+  model4B = compbl(tranwrd(model,'4dr', trimn('')));
+  model5B = transtrn(model,'4dr', trimn(''));
+
+  translateModel = translate(model,'#@!','4dr');
+run;
+
+data _null_;
+    today=date();
+    today2=today();
+
+    day=day(today);
+    dayOfWeek=weekday(today);
+    month=month(today);
+    week=week(today);
+    year=year(today);
+    quarter=qtr(today);
+
+    format today today2 mmddyy10.;
+
+    put today=;
+    put today2=;
+    put day=;
+    put dayOfWeek=;
+    put month= week= year=;
+    put quarter=;
+run;
+
+
+
