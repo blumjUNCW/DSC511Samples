@@ -276,4 +276,181 @@ run;
 proc sgplot data=sashelp.cars;
   hbar origin / response=mpg_highway stat=mean;
   hbar origin / response=mpg_city stat=mean;
+run;/**Overlaying is possible, this also generates a legend...*/
+
+proc sgplot data=sashelp.cars;
+  hbar origin / response=mpg_highway stat=mean;
+  hbar origin / response=mpg_city stat=mean
+                  barwidth=0.6;
+run;
+
+proc sgplot data=sashelp.cars;
+  hbar origin / response=mpg_city stat=mean fillattrs=(color=red)
+                outlineattrs=(color=black);
+  hbar origin / response=mpg_highway stat=mean
+                  barwidth=0.6 transparency=0.3
+                  fillattrs=(color=blue) outlineattrs=(color=black);
+  /*can play with width and transparency to make these work better 
+    together*/
+run;
+
+proc sgplot data=sashelp.cars;
+  hbar origin / response=mpg_city stat=mean fillattrs=(color=red)
+                outlineattrs=(color=black) legendlabel='City';
+  hbar origin / response=mpg_highway stat=mean
+                  barwidth=0.6 transparency=.3
+                  fillattrs=(color=blue) outlineattrs=(color=black)
+                  legendlabel='Highway';
+  yaxis label='Average MPG';
+  /*LEGENDLABEL= is available to set legend values in overlays*/
+run;
+
+proc sgplot data=sashelp.cars;
+  hbar origin / response=mpg_city stat=mean fillattrs=(color=red)
+                outlineattrs=(color=black) legendlabel='City'
+                barwidth=0.4 discreteoffset=0.21;
+  hbar origin / response=mpg_highway stat=mean fillattrs=(color=blue) 
+                outlineattrs=(color=black) legendlabel='Highway'
+                barwidth=0.4 discreteoffset=-0.21;
+  yaxis label='Average MPG';
+  /*discreteoffset moves the plot element with respect to major
+    ticks on a discrete axis. Each major tick has coordinate 0 and
+    you may move in the range -0.5 to 0.5*/
+run;
+
+proc sgplot data=sashelp.cars;
+  scatter x=horsepower y=mpg_highway;
+run;/**scatterplots must use numeric variables for X= and Y=
+      (both required) and they really should be quantitative,
+        though not absolutely necessary... */
+
+/*Graph area has a Marker for each point, which is styleable*/
+proc sgplot data=sashelp.cars;
+  scatter x=horsepower y=mpg_highway / markerattrs=(color=green 
+                                        symbol=trianglefilled);
+run;
+
+proc sgplot data=sashelp.cars;
+  scatter x=horsepower y=mpg_highway / filledoutlinedmarkers
+      markerattrs=(symbol=trianglefilled size=10pt)
+      markerfillattrs=(color=green) markeroutlineattrs=(color=red);
+run;
+
+/**Curve fitting is available for scatter plotting as separate
+  statements... */
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway;
+run;
+
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / degree=3 lineattrs=(color=cyan);
+run;
+
+
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / degree=3 lineattrs=(color=cyan)
+                                      nomarkers;
+run;
+
+proc sgplot data=sashelp.cars;
+  pbspline x=horsepower y=mpg_highway;
+run;
+
+proc sgplot data=sashelp.cars;
+  loess x=horsepower y=mpg_highway;
+run;
+
+
+proc sgplot data=sashelp.cars;
+  pbspline x=horsepower y=mpg_highway / smooth=1000;
+run;
+
+proc sgplot data=sashelp.cars;
+  loess x=horsepower y=mpg_highway / smooth=.1;
+run;
+
+/**For any of these, grouping is available... */
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / degree=3 group=origin;
+  keylegend / title='' across=1 position=topright location=inside;
+run;
+
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / degree=3 group=origin nomarkers
+                                    name='Poly';
+  scatter x=horsepower y=mpg_highway / group=origin
+                                    name='Points';
+  keylegend 'Points' / title='' across=1 position=topright location=inside;
+run;
+
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / degree=3 group=origin nomarkers
+                                    name='Poly';
+  scatter x=horsepower y=mpg_highway / group=origin
+                                    name='Points';
+  keylegend 'Points' / title='' across=1 position=topright location=inside;
+  keylegend 'Poly' / title='' position=bottomright location=inside 
+                      noborder;
+run;
+
+/*overlays are possible, must match on one of the variables...*/
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / legendlabel='Highway';
+  reg x=horsepower y=mpg_city / legendlabel='City';
+run;
+
+
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / legendlabel='Highway';
+  reg x=horsepower y=MSRP / legendlabel='Suggested Price';
+run;/**Scale differences are dominated by the larger scale... */
+
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / legendlabel='Highway' y2axis;
+    /*y2axis allows for a separate vertical axis on the right of the frame*/
+  reg x=horsepower y=MSRP / legendlabel='Suggested Price';
+run;
+
+/**Those axes are separable for styling... */
+proc sgplot data=sashelp.cars;
+  reg x=horsepower y=mpg_highway / legendlabel='Highway' y2axis;
+  reg x=horsepower y=MSRP / legendlabel='Suggested Price';
+  yaxis labelpos=top values=(0 to 200000 by 25000);
+  y2axis labelpos=top valueattrs=(color=lightblue);
+run;
+
+/**What if I want to change colors/styles across levels when a group is
+  active? In ??ATTRS= I only can set one value...*/
+proc sgplot data=sashelp.cars;
+  styleattrs datacontrastcolors=(purple lightcoral gray)
+              datasymbols=(squarefilled circlefilled trianglefilled);
+  reg x=horsepower y=mpg_highway / degree=3 group=origin;
+  keylegend / title='' across=1 position=topright location=inside;
+run;
+
+/*default cycling for lines and markers is to change colors until you
+  run out, then change symbols*/
+proc sgplot data=sashelp.cars;
+  styleattrs datacontrastcolors=(purple)
+              datasymbols=(squarefilled circlefilled trianglefilled);
+  reg x=horsepower y=mpg_highway / degree=3 group=origin;
+  keylegend / title='' across=1 position=topright location=inside;
+run;
+
+ods graphics / attrpriority=none;
+/**NONE -> all three, symbol, linepatter, color cycle across
+          groups */
+proc sgplot data=sashelp.cars;
+  styleattrs datacontrastcolors=(purple lightcoral gray)
+              datasymbols=(squarefilled circlefilled trianglefilled);
+  reg x=horsepower y=mpg_highway / degree=3 group=origin;
+  keylegend / title='' across=1 position=topright location=inside;
+run;
+
+proc sgplot data=sashelp.cars;
+  styleattrs datacontrastcolors=(mediummoderateyellowishgreen gray44 cx01665e)
+              datasymbols=(squarefilled circlefilled trianglefilled)
+              datalinepatterns=(solid);
+  reg x=horsepower y=mpg_highway / degree=3 group=origin;
+  keylegend / title='' across=1 position=topright location=inside;
 run;
