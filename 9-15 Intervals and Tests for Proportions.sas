@@ -53,14 +53,28 @@ run;
 
 proc freq data=sashelp.heart order=formatted;
   where chol_status ne ' ';
-  table bp_status*chol_status / binomial;
+  table chol_status*bp_status / binomial nocol;
   format bp_status $bp. chol_status $chol.;
 run;/**Binomial only applies to single-variable
         or one-way tables */
 
 proc freq data=sashelp.heart order=formatted;
   where chol_status ne ' ';
-  table bp_status*chol_status / chisq;
+  table chol_status*bp_status / expected deviation nocol;
+  format bp_status $bp. chol_status $chol.;
+run;/**EXPECTED--Expected cell counts under independence
+        and DEVIATIONS from Expected */
+
+proc freq data=sashelp.heart order=formatted;
+  where chol_status ne ' ';
+  table chol_status*bp_status / expected deviation nocol cellchi2;
+  format bp_status $bp. chol_status $chol.;
+run;/*Individual contributions to the chi-square stat are also
+      available*/
+
+proc freq data=sashelp.heart order=formatted;
+  where chol_status ne ' ';
+  table bp_status*chol_status /nocol cellchi2 chisq deviation;
   /**The two independent samples proportion test is 
       equivalent to the chi-square test for independence*/
   format bp_status $bp. chol_status $chol.;
@@ -68,8 +82,32 @@ run;
 
 proc freq data=sashelp.heart order=formatted;
   where chol_status ne ' ';
-  table chol_status*bp_status / chisq riskdiff relrisk;
-  /**The two independent samples proportion test is 
-      equivalent to the chi-square test for independence*/
+  table bp_status*chol_status /nocol cellchi2 chisq deviation;
+run;
+
+ods trace on;
+proc freq data=sashelp.heart order=formatted;
+  where chol_status ne ' ';
+  table chol_status*bp_status / chisq riskdiff nocol nopercent alpha=0.10;
+  /**RISKDIFF - difference in "risk"
+      Risk - row percent value (does for each colum)
+      Diff - is across the two rows
+      typically the success/target is on the first column*/
   format bp_status $bp. chol_status $chol.;
+  ods select crosstabfreqs RiskDiffCol1 ;
+run;
+
+ods trace on;
+proc freq data=sashelp.heart order=formatted;
+  where chol_status ne ' ';
+  table chol_status*bp_status / chisq riskdiff relrisk nocol nopercent;
+  /***/
+  format bp_status $bp. chol_status $chol.;
+  ods select crosstabfreqs RiskDiffCol1 RelativeRisks;
+run;
+
+libname SASData '~/SASData';
+proc freq data=sasdata.mi;
+  weight count;
+  table group*mi / chisq riskdiff relrisk cellchi2;
 run;
