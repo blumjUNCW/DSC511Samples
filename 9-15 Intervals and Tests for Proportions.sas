@@ -111,3 +111,8 @@ proc freq data=sasdata.mi;
   weight count;
   table group*mi / chisq riskdiff relrisk cellchi2;
 run;
+
+proc freq data=sasdata.diagnostictest order=freq;
+  table test1*test2 / agree;
+run;
+
