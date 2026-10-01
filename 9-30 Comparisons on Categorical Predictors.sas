@@ -184,3 +184,110 @@ proc glm data=sashelp.heart;
   ods select 'Type III Model ANOVA' ParameterEstimates 
               LSMeans LSMeanDiffCL;
 run;/**Not parallel, so diffs will change as weight changes... */
+
+ods trace on;
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  /*two categorical predictors...*/
+  model systolic = chol_status sex;
+  /*...no interaction*/
+  lsmeans chol_status / diff=all lines;
+  lsmeans sex / diff;
+  /**can do comparisons on each individually... */
+  ods select 'Type III Model ANOVA' lsmeans lsmlines diff;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  /*two categorical predictors...*/
+  model systolic = chol_status sex;
+  /*...no interaction*/
+  lsmeans chol_status sex / diff=all ;
+  /*could also put both in the same LSMEANS, but
+      the Tukey adjustment is not really applied for
+        Sex, because there's only one comparison*/
+  ods select 'Type III Model ANOVA' lsmeans diff;
+run;
+
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  /*with interaction--which tests as significant ->
+      the relationship between
+            1. systolic and cholStatus is inconsistent
+                  across males and females
+            2. systolic and sex is inconsistent 
+                  across cholesterol status*/
+  lsmeans chol_status*sex;
+  /*we look at them together -- almost as if they 
+      are one factor coded together*/
+  ods select 'Type III Model ANOVA' lsmeans;
+run;
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  lsmeans chol_status*sex / diff=all lines cl;
+  ods output lsmeans=means;
+  /*when I put in an interaction, I can still ask for
+      comparisons*/
+  *ods select 'Type III Model ANOVA' lsmeans;
+run;
+/**We see that the cholesterol - systolic relationship is
+    direct in the female group: worse cholesterol corresponds
+      to worse average systolic,
+      for the males, only the worst cholesterol corresponds
+        to significantly higher systolic bp
+        
+    Among those with the worst cholesterol, females have
+        higher avg. systolic BP,
+    Among those with the best, the relationship is reversed
+    For borderline cholesterol, no difference is discernable
+      for avg BP for males and females*/
+proc sgplot data=means;
+  series x=sex y=lsmean / group=chol_status markers;
+run;
+
+proc format;
+    value $chol
+    'Desirable' = '1. Desirable'
+    'Borderline' = '2. Borderline'
+    'High' = '3. High'
+    ;
+run;
+
+data means;
+  set means;
+  select(chol_status);
+    when('Desirable') cholCode=1;
+    when('Borderline') cholCode=2;
+    when('High') cholCode=3;
+  end;
+run;
+
+proc sort data=means;
+    by cholcode sex;
+run;
+
+proc sgplot data=means;
+  series x=cholCode y=lsmean / group=sex markers;
+run;
+
+
+ods graphics off;
+proc glm data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  lsmeans chol_status*sex / slice=chol_status slice=sex;
+run;
+
+ods graphics off;
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  slice chol_status*sex / sliceby=sex diff=all;
+run;
+
