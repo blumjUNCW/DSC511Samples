@@ -289,5 +289,26 @@ proc mixed data=sashelp.heart;
   class chol_status sex;
   model systolic = chol_status|sex;
   slice chol_status*sex / sliceby=sex diff=all;
+  slice chol_status*sex / sliceby=chol_status diff=all cl;
 run;
 
+
+ods graphics off;
+proc mixed data=sashelp.heart;
+  class chol_status sex;
+  model systolic = chol_status|sex;
+  slice chol_status*sex / sliceby=sex diff=all;
+  ods select sliceTests;
+  ods output sliceDiffs=slDiff;
+  /**Sometimes it's helpful to restrict/rework output
+    from certain procedures, like MIXED */
+run;
+
+proc print data=slDiff noobs;
+  by slice;
+  id slice;
+  var chol_status _chol_status estimate probt;
+  /*it compares two levels of chol_status, so it
+      makes a second version of the variable 
+      pre-pended with an _ */
+run;
