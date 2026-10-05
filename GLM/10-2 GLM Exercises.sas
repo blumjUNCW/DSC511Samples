@@ -45,3 +45,105 @@ run;
 
   /*Take the previous model and add in crime rate and its interactions with
     region and ba/bs rate and determine what is significant and interpret*/
+
+data cdi;
+  set sasdata.cdi;
+
+  CrimeRate = crimes/(pop/10000);
+  label CrimeRate = 'Crimes per 10,000 people';
+run;
+
+ods graphics off;
+ods trace on;
+proc glm data=cdi;
+  class region;
+  model inc_per_cap = region|ba_bs|CrimeRate @2 / solution;
+run;
+/*Interactions involving crime rate are not important...*/
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  model inc_per_cap = region|ba_bs CrimeRate  / solution;
+run;/*...and it further appears that crime rate is not important--
+    does not improve the model with BA/BS and Region from before*/
+
+ods graphics off;
+proc glm data=cdi;
+  class region;
+  model inc_per_cap = CrimeRate  / solution;
+run;
+
+/**We will reduce a couple of quantitative predictors to binary... */
+proc means data=sasdata.cdi median;
+  class region;
+  var ba_bs pop18_34;
+run;
+
+proc format;
+  value baMedian
+   low-20 = 'Below Median BA/BS Rate'
+   20-high = 'Above Median BA/BS Rate'
+   ;
+  value popMedian
+   low-28 = 'Below Median % 18 to 34'
+   28-high = 'Above Median % 18 to 34'
+   ;
+run;
+/**Using these to make binary predictors on ba/bs and
+pop 18-34 (above median or not), use those two with region
+and all interactions to predict income per capita.
+
+Decide which predictors/interactions are significant and
+interpret*/
+
+
+ods graphics off;
+proc glm data=cdi;
+  class region ba_bs pop18_34;
+  format ba_bs baMedian. pop18_34 popMedian.;
+  model inc_per_cap = region|ba_bs|pop18_34 @2 / solution;
+  ods select 'Type III Model ANOVA';
+run; /*no 3-factor interaction
+
+      all of the 2-factor interactions appear to be significant*/
+ods graphics off;
+proc glm data=cdi;
+  class region ba_bs pop18_34;
+  format ba_bs baMedian. pop18_34 popMedian.;
+  model inc_per_cap = region|ba_bs|pop18_34 @2 / solution;
+  lsmeans region*ba_bs region*pop18_34 ba_bs*pop18_34;
+  *ods select 'Type III Model ANOVA';
+  ods output lsmeans=means;
+run;
+
+title 'Profile Plot for BA/BS Rate vs. Region';
+proc sgplot data=means;
+  where pop18_34 eq ' ';
+  series x=region y=inc_per_capLSMean / group=ba_bs markers
+          markerattrs=(symbol=circlefilled);
+run;
+
+
+
+title 'Profile Plot for BA/BS vs. Pop 18 to 34';
+proc sgplot data=means;
+  where region eq ' ';
+  series x=ba_bs y=inc_per_capLSMean / group=pop18_34 markers
+          markerattrs=(symbol=circlefilled);
+run;
+
+ods graphics off;
+proc mixed data=cdi;
+  class region ba_bs pop18_34;
+  format ba_bs baMedian. pop18_34 popMedian.;
+  model inc_per_cap = region|ba_bs|pop18_34 @2 / solution;
+  slice pop18_34*region / sliceby=region;
+  slice pop18_34*region / sliceby=pop18_34 diff adjust=tukey;
+run;
+title 'Profile Plot for Pop 18 to 34 vs. Region';
+proc sgplot data=means;
+  where ba_bs eq ' ';
+  series x=region y=inc_per_capLSMean / group=pop18_34 markers
+          markerattrs=(symbol=circlefilled);
+run;
